@@ -92,8 +92,7 @@ class PrizeController extends Controller
             $form->display('id', 'ID');
             $form->text('prize', "奖品名称");
             $form->image('img', "奖品图片")->removable();
-            $form->dateTime("stime", "兑换开始")->format('YYYY-MM-DD HH:mm:ss');
-            $form->dateTime("etime", "兑换结束")->format('YYYY-MM-DD HH:mm:ss');
+            $form->datetimeRange("stime", "etime", "兑换时间");
             $form->number("num", "奖品数量");
             $form->number("cost", "兑换积分");
             $form->radio("checked", "发布")->options([0 => "否", 1 => "是"])->default(0);
