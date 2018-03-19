@@ -80,9 +80,6 @@ class PrizeController extends Controller
                 return "<img src=\"/".config("filesystems.disks.admin.root")."/{$img}\" style=\"width:20px;\"/>";
             });
             
-            $grid->img("奖品图片")->display(function ($img){
-                return "<img src=\"/".config("filesystems.disks.admin.url")."/{$img}\" style=\"width:20px;\"/>";
-            });
 
 
             $grid->model()->orderBy('id', 'desc');
