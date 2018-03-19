@@ -96,7 +96,8 @@ class PrizeController extends Controller
             $form->dateTime("etime", "兑换结束");
             $form->number("num", "奖品数量");
             $form->number("cost", "兑换积分");
-            $form->select("checked", "发布")->options(array("否" =>0, "是" => 1));
+            $form->radio("checked", "发布")->options(["否" => 0, "是" => 1])->default(0);
+
             $form->textarea("intro", "奖品简介");
 
             $form->display('created_at', 'Created At');
