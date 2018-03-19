@@ -74,9 +74,18 @@ class PrizeController extends Controller
         return Admin::grid(Prize::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->prize("奖品名称");
+            $grid->img("奖品图片")->display(function ($img){
+                return "<img src=\"".config("admin.upload.disk")."/{$img}\" />";
+            });
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->paginate(30);
+
+            $grid->disableExport();
+            $grid->perPages([30, 40, 50]);
+
+//            $grid->created_at();
+//            $grid->updated_at();
         });
     }
 
