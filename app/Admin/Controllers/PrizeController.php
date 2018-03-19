@@ -75,9 +75,9 @@ class PrizeController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->prize("奖品名称");
-            $grid->img("奖品图片")->display(function ($img){
-                return "<img src=\"".config("filesystems.disks.admin.root")."/".$img."\" />";
-            });
+//            $grid->img("奖品图片")->display(function ($img){
+//                return "<img src=\"".config("filesystems.disks.admin.root")."/".$img."\" />";
+//            });
 
             $grid->img("奖品图片")->display(function ($img){
                 return "<img src=\"".config("filesystems.disks.admin.url")."/".$img."\" />";
