@@ -90,6 +90,14 @@ class PrizeController extends Controller
         return Admin::form(Prize::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text('prize', "奖品名称");
+            $form->text('img', "奖品图片");
+            $form->dateTime("stime", "兑换开始");
+            $form->dateTime("etime", "兑换结束");
+            $form->number("num", "奖品数量");
+            $form->number("cost", "兑换积分");
+            $form->select("checked", "发布")->options(array("否" =>0, "是" => 1));
+            $form->textarea("intro", "奖品简介");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
