@@ -77,7 +77,7 @@ class PrizeController extends Controller
             $grid->prize("奖品名称");
 
             $grid->img("奖品图片")->display(function ($img){
-                return "<img src=\"/uploads/".$img."\" style=\"width:20px;\"/>";
+                return "<img src=\"/uploads/{$img}\" style=\"width:20px;\"/>";
             });
 
 
