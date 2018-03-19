@@ -12,6 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
 
-    $router->resource('/prize', 'PrizeController@index');
+    $router->resource('/prize', \App\Admin\Controllers\PrizeController::class);
 
 });
