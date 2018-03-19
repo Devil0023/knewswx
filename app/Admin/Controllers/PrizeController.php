@@ -77,9 +77,18 @@ class PrizeController extends Controller
             $grid->prize("奖品名称");
 
             $grid->img("奖品图片")->display(function ($img){
-                return "<img src=\"/".config("filesystems.disks.admin.root")."/{$img}\" style=\"width:20px;\"/>";
+                return "<img src=\"/uploads/{$img}\" style=\"width:25px;\"/>";
             });
-            
+
+            $grid->num("奖品数量");
+            $grid->cost("兑换积分");
+
+            $grid->stime("开始时间");
+            $grid->etime("结束时间");
+
+            $grid->checked("发布")->display(function ($checked) {
+                return $checked ? '是' : '否';
+            });
 
 
             $grid->model()->orderBy('id', 'desc');
