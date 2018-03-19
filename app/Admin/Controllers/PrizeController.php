@@ -76,11 +76,16 @@ class PrizeController extends Controller
             $grid->id('ID')->sortable();
             $grid->prize("奖品名称");
             $grid->img("奖品图片")->display(function ($img){
-                return "<img src=\"".config("filesystems.admin.root")."/".$img."\" />";
+                return "<img src=\"".config("filesystems.disks.admin.root")."/".$img."\" />";
             });
 
-            $grid->paginate(30);
+            $grid->img("奖品图片")->display(function ($img){
+                return "<img src=\"".config("filesystems.disks.admin.url")."/".$img."\" />";
+            });
 
+
+            $grid->model()->orderBy('id', 'desc');
+            $grid->paginate(30);
             $grid->disableExport();
             $grid->perPages([30, 40, 50]);
 
