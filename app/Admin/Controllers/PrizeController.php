@@ -73,6 +73,8 @@ class PrizeController extends Controller
     {
         return Admin::grid(Prize::class, function (Grid $grid) {
 
+            $grid->header("奖品管理");
+
             $grid->id('ID')->sortable();
             $grid->prize("奖品名称");
 
