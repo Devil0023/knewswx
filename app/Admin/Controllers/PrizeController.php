@@ -64,6 +64,10 @@ class PrizeController extends Controller
         });
     }
 
+    public function rsync($id){
+        echo $id;
+    }
+
     /**
      * Make a grid builder.
      *
