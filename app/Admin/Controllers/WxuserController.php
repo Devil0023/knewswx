@@ -81,15 +81,18 @@ class WxuserController extends Controller
                 return ($fill)? "是": "否";
             });
 
-//            $grid->fill("完善资料")->display(function ($fill){
-//                return ($fill)? "是": "否";
-//            });
-
-
             $grid->created_at();
             $grid->updated_at();
 
             $grid->disableCreateButton();
+            $grid->disableExport();
+
+            $grid->tools(function ($tools){
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
+            });
+
             $grid->perPages([30, 40, 50]);
         });
     }
