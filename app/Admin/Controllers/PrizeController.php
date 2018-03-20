@@ -90,10 +90,10 @@ class PrizeController extends Controller
             });
 
             $grid->column("id", "剩余")->display(function ($id){
-                $left = Redis::llen("WXPrizePoolList-".$id);
+                $left = \Redis::llen("WXPrizePoolList-".$id);
                 return $left;
             });
-
+//
 
             $grid->model()->orderBy('id', 'desc');
             $grid->paginate(30);
