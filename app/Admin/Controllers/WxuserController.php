@@ -75,8 +75,17 @@ class WxuserController extends Controller
 
             $grid->id('ID')->sortable();
 
+            $grid->nickname("昵称");
+            $grid->headimgurl("头像");
+            $grid->fill("完善资料")->display(function ($fill){
+                return ($fill)? "是": "否";
+            });
+
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->disableCreateButton();
+            $grid->perPages([30, 40, 50]);
         });
     }
 
