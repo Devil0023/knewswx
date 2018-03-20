@@ -88,6 +88,15 @@ class PointsruleController extends Controller
             $grid->disableExport();
             $grid->perPages([30, 40, 50]);
 
+            $grid->tools(function ($tools){
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
+            });
+
+            $grid->action(function ($actions){
+                $actions->disableDelete();
+            });
 
         });
     }

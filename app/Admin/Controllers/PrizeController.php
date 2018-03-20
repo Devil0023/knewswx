@@ -98,6 +98,17 @@ class PrizeController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+
+            $grid->action(function ($actions){
+                // append一个操作
+                $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
+
+                // prepend一个操作
+                $actions->prepend('<a href=""><i class="fa fa-paper-plane"></i></a>');
+            });
+
+
         });
     }
 

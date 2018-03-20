@@ -93,6 +93,10 @@ class WxuserController extends Controller
                 });
             });
 
+            $grid->action(function ($actions){
+                $actions->disableDelete();
+            });
+
             $grid->perPages([30, 40, 50]);
         });
     }
