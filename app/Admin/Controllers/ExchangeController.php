@@ -20,12 +20,14 @@ class ExchangeController extends Controller
      *
      * @return Content
      */
-    public function index()
+    public function index(Request $request)
     {
+        echo $request->pid;
+
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品兑换');
+            $content->description('兑换列表');
 
             $content->body($this->grid());
         });
@@ -41,8 +43,8 @@ class ExchangeController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品兑换');
+            $content->description('兑换列表');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +59,8 @@ class ExchangeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品兑换');
+            $content->description('兑换列表');
 
             $content->body($this->form());
         });
