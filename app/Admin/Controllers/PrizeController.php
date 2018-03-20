@@ -135,7 +135,7 @@ class PrizeController extends Controller
                     $batch->disableDelete();
                 });
             });
-            
+
             $grid->actions(function ($actions){
                 $actions->disableDelete();
                 // append一个操作
