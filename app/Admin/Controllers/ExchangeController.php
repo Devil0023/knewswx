@@ -17,8 +17,8 @@ class ExchangeController extends Controller
     use ModelForm;
     public $pid = 0;
 
-    public function __invoke(Request $request){
-        $this->pid = $request->pid;
+    public function __invoke($pid){
+        $this->pid = $pid;
     }
     /**
      * Index interface.
