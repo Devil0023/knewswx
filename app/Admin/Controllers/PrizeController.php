@@ -96,8 +96,8 @@ class PrizeController extends Controller
             $grid->disableExport();
             $grid->perPages([30, 40, 50]);
 
-//            $grid->created_at();
-//            $grid->updated_at();
+            $grid->created_at();
+            $grid->updated_at();
         });
     }
 

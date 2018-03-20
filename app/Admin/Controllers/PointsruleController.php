@@ -74,9 +74,21 @@ class PointsruleController extends Controller
         return Admin::grid(Pointsrule::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->rule("规则");
+            $grid->number("积分");
+            $grid->intro("简介")->display(function($text) {
+                return str_limit($text, 10, '...');
+            });
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->model()->orderBy('id', 'desc');
+            $grid->paginate(30);
+            $grid->disableExport();
+            $grid->perPages([30, 40, 50]);
+
+
         });
     }
 
@@ -90,6 +102,10 @@ class PointsruleController extends Controller
         return Admin::form(Pointsrule::class, function (Form $form) {
 
             $form->display('id', 'ID');
+
+            $form->text("rule", "规则");
+            $form->number("points", "积分");
+            $form->textarea("intro", "简介");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
