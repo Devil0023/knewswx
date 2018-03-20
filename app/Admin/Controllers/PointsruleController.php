@@ -75,7 +75,7 @@ class PointsruleController extends Controller
 
             $grid->id('ID')->sortable();
             $grid->rule("规则");
-            $grid->number("积分");
+            $grid->points("积分");
             $grid->intro("简介")->display(function($text) {
                 return str_limit($text, 10, '...');
             });
