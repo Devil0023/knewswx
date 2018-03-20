@@ -15,10 +15,11 @@ use Illuminate\Http\Request;
 class ExchangeController extends Controller
 {
     use ModelForm;
-    public $pid = 0;
+    //public $pid = 0;
 
     public function __invoke($pid){
-        $this->pid = $pid;
+        echo $pid;
+        //$this->pid = $pid;
     }
     /**
      * Index interface.
