@@ -15,7 +15,7 @@ Route::group([
     $router->resource('/prize', PrizeController::class);
     $router->get("/prize/rsync/{id}", "PrizeController@rsync");
 
-    $router->get("/prize/exchange/{pid}", "ExchangeController@index");
+    $router->resource("/prize/exchange", "ExchangeController@index");
 
     $router->resource('/points/rule', PointsruleController::class);
     $router->resource('/wxuser', WxuserController::class);
