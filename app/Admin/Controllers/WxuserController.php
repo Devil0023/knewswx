@@ -77,9 +77,9 @@ class WxuserController extends Controller
 
             $grid->nickname("昵称");
             $grid->headimgurl("头像");
-//            $grid->fill("完善资料")->display(function ($fill){
-//                return ($fill)? "是": "否";
-//            });
+            $grid->fill("完善资料")->display(function ($fill){
+                return ($fill)? "是": "否";
+            });
 
 
             $grid->created_at();
