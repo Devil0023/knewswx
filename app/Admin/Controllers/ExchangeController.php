@@ -15,7 +15,11 @@ use Illuminate\Http\Request;
 class ExchangeController extends Controller
 {
     use ModelForm;
+    public $pid = 0;
 
+    public function init(Request $request){
+        $this->pid = $request->pid;
+    }
     /**
      * Index interface.
      *
@@ -70,9 +74,9 @@ class ExchangeController extends Controller
      *
      * @return Grid
      */
-    protected function grid(Request $request)
+    protected function grid()
     {
-        echo $request->pid;
+        echo $this->pid;
 
         return Admin::grid(Exchange::class, function (Grid $grid) {
 
