@@ -90,8 +90,8 @@ class PrizeController extends Controller
                 return $checked ? '是' : '否';
             });
 
-            $grid->column("剩余")->display(function ($id){
-                return $id;
+            $grid->column("剩余")->display(function ($grid){
+                return $grid->id;
             });
 
 
