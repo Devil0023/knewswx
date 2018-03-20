@@ -16,6 +16,6 @@ Route::group([
 
     $router->resource('/points/rule', PointsruleController::class);
 
-
+    $router->resource('/wxuser', WxuserController::class);
 
 });
