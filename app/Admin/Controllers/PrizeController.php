@@ -90,7 +90,7 @@ class PrizeController extends Controller
             });
 
             $grid->column("id", "剩余")->display(function ($id){
-                $left = \Redis::llen("WXPrizePoolList-".$id);
+                $left = \Redis::LLEN("WXPrizePoolList-".$id);
                 return $left;
             });
 //
