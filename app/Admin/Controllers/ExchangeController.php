@@ -15,11 +15,10 @@ use Illuminate\Http\Request;
 class ExchangeController extends Controller
 {
     use ModelForm;
-    //public $pid = 0;
+    public $pid = 0;
 
-    public function __invoke($pid){
-        echo $pid;
-        //$this->pid = $pid;
+    public function __invoke(Request $request){
+        $this->pid = $request->pid;
     }
     /**
      * Index interface.
@@ -28,6 +27,7 @@ class ExchangeController extends Controller
      */
     public function index()
     {
+        echo $this->pid;
         return Admin::content(function (Content $content) {
 
             $content->header('奖品兑换');
