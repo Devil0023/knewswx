@@ -90,6 +90,10 @@ class PrizeController extends Controller
                 return $checked ? '是' : '否';
             });
 
+            $grid->column("剩余")->display(function ($id){
+                return $id;
+            });
+
 
             $grid->model()->orderBy('id', 'desc');
             $grid->paginate(30);
