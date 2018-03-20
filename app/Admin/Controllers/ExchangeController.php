@@ -17,7 +17,7 @@ class ExchangeController extends Controller
     use ModelForm;
     public $pid = 0;
 
-    public function init(Request $request){
+    public function __init(Request $request){
         $this->pid = $request->pid;
     }
     /**
