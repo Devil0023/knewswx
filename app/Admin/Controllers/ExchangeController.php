@@ -25,9 +25,9 @@ class ExchangeController extends Controller
      *
      * @return Content
      */
-    public function index()
+    public function index($pid)
     {
-        echo $this->pid;
+        echo $pid;
         return Admin::content(function (Content $content) {
 
             $content->header('奖品兑换');
