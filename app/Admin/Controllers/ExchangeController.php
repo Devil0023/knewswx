@@ -17,15 +17,18 @@ class ExchangeController extends Controller
     use ModelForm;
     public $pid = 0;
 
+    public function __construct(Request $request){
+        $this->pid = $request->pid;
+        echo $this->pid;
+    }
+
     /**
      * Index interface.
      *
      * @return Content
      */
-    public function index(Request $request)
+    public function index()
     {
-        $this->pid = $request->pid;
-
         return Admin::content(function (Content $content) {
 
             $content->header('奖品兑换');
