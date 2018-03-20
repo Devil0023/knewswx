@@ -65,7 +65,13 @@ class PrizeController extends Controller
     }
 
     public function rsync($id){
-        echo $id;
+        $prize = Prize::find($id);
+        var_dump($prize->num);
+        for($i = 0; $i < $prize->num; $i++){
+            $result = Redis::lpush("WXPrizePoolList-".$id, 1);
+            var_dump($result);
+        }
+        
     }
 
     /**
