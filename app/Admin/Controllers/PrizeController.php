@@ -87,7 +87,7 @@ class PrizeController extends Controller
         }
 
 
-        return redirect("/prize");
+        return redirect("/admin/prize");
     }
 
     /**
@@ -134,6 +134,7 @@ class PrizeController extends Controller
             $grid->actions(function ($actions){
                 // append一个操作
                 $actions->append('<a href="'.url("admin/prize/rsync", [$actions->getKey()]).'"><i class="fa fa-paper-plane"></i></a>');
+                $actions->append('<a href="'.url("admin/prize/exchange", [$actions->getKey()]).'"><i class="fa fa-eye"></i></a>');
 
             });
 
