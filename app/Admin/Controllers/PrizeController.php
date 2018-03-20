@@ -130,8 +130,14 @@ class PrizeController extends Controller
             $grid->created_at();
             $grid->updated_at();
 
-
+            $grid->tools(function ($tools){
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
+            });
+            
             $grid->actions(function ($actions){
+                $actions->disableDelete();
                 // append一个操作
                 $actions->append('<a href="'.url("admin/prize/rsync", [$actions->getKey()]).'"><i class="fa fa-paper-plane"></i></a>');
                 $actions->append('<a href="'.url("admin/prize/exchange", [$actions->getKey()]).'"><i class="fa fa-eye"></i></a>');
