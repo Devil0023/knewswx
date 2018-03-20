@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\Wxuser;
+use App\Models\Pointslog;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class WxuserController extends Controller
+class PointslogController extends Controller
 {
     use ModelForm;
 
@@ -24,8 +24,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('微信用户');
-            $content->description('查看微信用户信息');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('微信用户');
-            $content->description('查看微信用户信息');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('微信用户');
-            $content->description('查看微信用户信息');
+            $content->header('header');
+            $content->description('description');
 
             $content->body($this->form());
         });
@@ -71,34 +71,12 @@ class WxuserController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(Wxuser::class, function (Grid $grid) {
+        return Admin::grid(Pointslog::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
 
-            $grid->nickname("昵称");
-            $grid->headimgurl("头像");
-            $grid->column("fill", "完善资料")->display(function ($fill){
-                return ($fill)? "是": "否";
-            });
-
             $grid->created_at();
             $grid->updated_at();
-
-            $grid->disableCreateButton();
-            $grid->disableExport();
-
-            $grid->tools(function ($tools){
-                $tools->batch(function ($batch) {
-                    $batch->disableDelete();
-                });
-            });
-
-            $grid->actions(function ($actions){
-                $actions->disableDelete();
-                $actions->append('<a href="'.url("admin/points/log?uid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
-            });
-
-            $grid->perPages([30, 40, 50]);
         });
     }
 
@@ -109,7 +87,7 @@ class WxuserController extends Controller
      */
     protected function form()
     {
-        return Admin::form(Wxuser::class, function (Form $form) {
+        return Admin::form(Pointslog::class, function (Form $form) {
 
             $form->display('id', 'ID');
 

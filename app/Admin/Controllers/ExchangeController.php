@@ -17,18 +17,15 @@ class ExchangeController extends Controller
     use ModelForm;
     public $pid = 0;
 
-    public function __invoke(Request $request){
-        $this->pid = $request->pid;
-        echo "invoke".$this->pid;
-    }
     /**
      * Index interface.
      *
      * @return Content
      */
-    public function index($pid)
+    public function index(Request $request)
     {
-        echo $pid;
+        $this->pid = $request->pid;
+
         return Admin::content(function (Content $content) {
 
             $content->header('奖品兑换');
@@ -78,8 +75,6 @@ class ExchangeController extends Controller
      */
     protected function grid()
     {
-        echo $this->pid;
-
         return Admin::grid(Exchange::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
@@ -87,6 +82,19 @@ class ExchangeController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->disableCreateButton();
+            $grid->disableExport();
+
+            $grid->tools(function ($tools){
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
+            });
+
+            $grid->actions(function ($actions){
+                $actions->disableDelete();
+            });
         });
     }
 

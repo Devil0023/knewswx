@@ -140,7 +140,7 @@ class PrizeController extends Controller
                 $actions->disableDelete();
                 // append一个操作
                 $actions->append('<a href="'.url("admin/prize/rsync", [$actions->getKey()]).'"><i class="fa fa-paper-plane"></i></a>');
-                $actions->append('<a href="'.url("admin/prize/exchange?pid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
+                $actions->append('<a href="'.url("admin/exchange?pid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
 
             });
 
