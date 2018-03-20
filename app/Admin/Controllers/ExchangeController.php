@@ -21,10 +21,8 @@ class ExchangeController extends Controller
      *
      * @return Content
      */
-    public function index(Request $request)
+    public function index()
     {
-        echo $request->pid;
-
         return Admin::content(function (Content $content) {
 
             $content->header('奖品兑换');
@@ -72,11 +70,14 @@ class ExchangeController extends Controller
      *
      * @return Grid
      */
-    protected function grid()
+    protected function grid(Request $request)
     {
+        echo $request->pid;
+
         return Admin::grid(Exchange::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+
 
             $grid->created_at();
             $grid->updated_at();
