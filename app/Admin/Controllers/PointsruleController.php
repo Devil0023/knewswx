@@ -24,8 +24,8 @@ class PointsruleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('积分规则');
+            $content->description('设置积分规则');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class PointsruleController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('积分规则');
+            $content->description('设置积分规则');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class PointsruleController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('积分规则');
+            $content->description('设置积分规则');
 
             $content->body($this->form());
         });

@@ -24,8 +24,8 @@ class PrizeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品管理');
+            $content->description('设置奖品及相关信息');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class PrizeController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品管理');
+            $content->description('设置奖品及相关信息');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class PrizeController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('奖品管理');
+            $content->description('设置奖品及相关信息');
 
             $content->body($this->form());
         });
@@ -72,8 +72,6 @@ class PrizeController extends Controller
     protected function grid()
     {
         return Admin::grid(Prize::class, function (Grid $grid) {
-
-            $grid->header("奖品管理");
 
             $grid->id('ID')->sortable();
             $grid->prize("奖品名称");

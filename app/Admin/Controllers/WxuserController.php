@@ -24,8 +24,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('微信用户');
+            $content->description('查看微信用户信息');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('微信用户');
+            $content->description('查看微信用户信息');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class WxuserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('微信用户');
+            $content->description('查看微信用户信息');
 
             $content->body($this->form());
         });
