@@ -100,7 +100,7 @@ class PrizeController extends Controller
             $grid->updated_at();
 
 
-            $grid->action(function ($actions){
+            $grid->actions(function ($actions){
                 // append一个操作
                 $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
 

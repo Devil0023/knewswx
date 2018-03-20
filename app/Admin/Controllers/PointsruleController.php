@@ -94,7 +94,7 @@ class PointsruleController extends Controller
                 });
             });
 
-            $grid->action(function ($actions){
+            $grid->actions(function ($actions){
                 $actions->disableDelete();
             });
 
