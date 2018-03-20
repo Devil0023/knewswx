@@ -102,10 +102,8 @@ class PrizeController extends Controller
 
             $grid->actions(function ($actions){
                 // append一个操作
-                $actions->append('<a href=""><i class="fa fa-eye"></i></a>');
+                $actions->append('<a href="'.url("admin/prize/rsync", [$actions->getKey()]).'"><i class="fa fa-paper-plane"></i></a>');
 
-                // prepend一个操作
-                $actions->prepend('<a href=""><i class="fa fa-paper-plane"></i></a>');
             });
 
 
