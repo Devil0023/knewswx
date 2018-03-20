@@ -10,6 +10,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Illuminate\Support\Facades\Redis;
 
 class PrizeController extends Controller
 {
@@ -90,10 +91,10 @@ class PrizeController extends Controller
             });
 
             $grid->column("id", "剩余")->display(function ($id){
-                $left = \Redis::LLEN("WXPrizePoolList-".$id);
+                $left = Redis::llen("WXPrizePoolList-".$id);
                 return $left;
             });
-//
+
 
             $grid->model()->orderBy('id', 'desc');
             $grid->paginate(30);
