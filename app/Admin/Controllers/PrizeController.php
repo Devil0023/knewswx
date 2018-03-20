@@ -75,19 +75,19 @@ class PrizeController extends Controller
             $diff = $length - $prize->num;
 
             for($i = 0; $i < $diff; $i++){
-                Redis::lpush($list, 1);
+                Redis::lpop($list, 1);
             }
 
         }elseif($length < $prize->num){
 
             $diff = $prize->num - $length;
             for($i = 0; $i < $diff; $i++){
-                Redis::lpop($list);
+                Redis::lpush($list);
             }
         }
 
 
-        return redirect()->action('PrizeController@index');
+        return redirect("/prize");
     }
 
     /**
