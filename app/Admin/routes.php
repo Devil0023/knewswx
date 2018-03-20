@@ -14,4 +14,8 @@ Route::group([
 
     $router->resource('/prize', PrizeController::class);
 
+    $router->resource('/points/rule', Pointsrule::class);
+
+    
+
 });
