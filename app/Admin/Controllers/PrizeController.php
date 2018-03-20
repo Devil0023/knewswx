@@ -14,7 +14,6 @@ use Encore\Admin\Controllers\ModelForm;
 class PrizeController extends Controller
 {
     use ModelForm;
-
     /**
      * Index interface.
      *
@@ -91,7 +90,8 @@ class PrizeController extends Controller
             });
 
             $grid->column("id", "剩余")->display(function ($id){
-                return $id;
+                $left = Redis::llen("WXPrizePoolList-".$id);
+                return $left;
             });
 
 
