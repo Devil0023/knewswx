@@ -16,9 +16,9 @@ class WechatController extends Controller
 
     public function user(){
 
-        $userinfo = session("wechat.oauth_user.snsapi_userinfo");
+        $userinfo = session("wechat.oauth_user");
         var_dump($userinfo);
-        
+
 
         die;
 
