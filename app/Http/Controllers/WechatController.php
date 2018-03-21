@@ -19,7 +19,7 @@ class WechatController extends Controller
             $list = json_decode($json, true);
         }else{
             $now  = date("Y-m-d H:i:s", $time);
-            $list = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->get()->toJson;
+            $list = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->get()->toJson();
             exit($list); die;
         }
 
