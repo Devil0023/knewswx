@@ -17,25 +17,22 @@ class KnewsRegister
     public function handle($request, Closure $next)
     {
         $userinfo = session("wechat.oauth_user");
-
-        print_r($userinfo["default"]->id); die;
-
-        $wxuser   = Wxuser::where("openid", "=", $userinfo->openid);
-
-        echo $userinfo;
-        echo $wxuser->id;
-        die;
+        $wxuser   = Wxuser::where("openid", "=", $userinfo["default"]->openid)->first();
 
         if($wxuser->id){
             var_dump(1);
         }else{
             $newuser = new Wxuser();
-            $newuser->openid = $userinfo->openid;
-            $newuser->nickname = $userinfo->nickname;
-            $newuser->sex = $userinfo->sex;
-            $newuser->province = $userinfo->province;
-            $newuser->city = $userinfo->city;
+            $newuser->openid     = $userinfo["default"]->openid;
+            $newuser->nickname   = $userinfo["default"]->nickname;
+            $newuser->sex         = $userinfo["default"]->sex;
+            $newuser->province   = $userinfo["default"]->province;
+            $newuser->city        = $userinfo["default"]->city;
+            $newuser->headimgurl = $userinfo["default"]->headimgurl;
+            $newuser->privilege  = $userinfo["default"]->privilege;
+            $newuser->unionid    = $userinfo["default"]->unionid;
 
+            $newuser->save();
         }
 
         return $next($request);
