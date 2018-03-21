@@ -18,7 +18,7 @@ class KnewsRegister
     {
         $userinfo = session("wechat.oauth_user");
 
-        print_r($userinfo["default"]); die;
+        print_r($userinfo["default"]->id); die;
 
         $wxuser   = Wxuser::where("openid", "=", $userinfo->openid);
 
