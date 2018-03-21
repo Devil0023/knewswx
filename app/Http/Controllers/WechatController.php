@@ -12,7 +12,11 @@ class WechatController extends Controller
         //$userinfo = session("wechat.oauth_user");
         //var_dump($userinfo);
 
-        echo 1;
+
+
+        dd(session("wechat.oauth_user"));
+
+        dd(session("wxuser"));
 
         die;
 
