@@ -9,8 +9,9 @@ class WechatController extends Controller
     //
 
     public function __construct(){
-        $userinfo = session('wechat.oauth_user');
-        var_dump($userinfo);
+        //$userinfo = session('wechat.oauth_user');
+        //var_dump($userinfo);
+        echo 2;
     }
 
     public function user(){
