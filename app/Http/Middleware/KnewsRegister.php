@@ -19,9 +19,11 @@ class KnewsRegister
         $userinfo = session("wechat.oauth_user");
         $wxuser   = Wxuser::where("openid", "=", $userinfo["default"]->openid)->first();
 
-        if(!is_null($wxuser)){
-            var_dump("yes");
-        }else{
+        print_r($userinfo["default"]);
+
+        echo $userinfo["default"]->openid; die;
+
+        if(is_null($wxuser)){
             $newuser = new Wxuser();
             $newuser->openid     = $userinfo["default"]->openid;
             $newuser->nickname   = $userinfo["default"]->nickname;
@@ -34,6 +36,9 @@ class KnewsRegister
 
             $newuser->save();
             var_dump($newuser->id);
+
+        }else{
+            var_dump("yes");
         }
 
         return $next($request);
