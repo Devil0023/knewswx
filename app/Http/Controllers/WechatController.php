@@ -9,14 +9,11 @@ class WechatController extends Controller
 {
 
     public function prizelist(){
-        $list = Prize::where(array(
-            "checked" => "1",
-        ))->all();
-
+        $list = Prize::where("checked", 1)->all();
         var_dump($list);
     }
 
     public function prize($id){
-        echo id;
+        echo $id;
     }
 }
