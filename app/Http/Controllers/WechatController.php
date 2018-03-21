@@ -23,7 +23,9 @@ class WechatController extends Controller
         }
 
         $list = json_decode($json, true);
-        var_dump($list);
+        foreach($list as $key => $val){
+            echo "<a href=\"/wechat/prize/detail/{$val[id]}\">{$val[prize]}</a><br/>";
+        }
     }
 
     public function prize($id){
