@@ -20,6 +20,7 @@ Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi
 //        $user = session('wechat.oauth_user'); // 拿到授权用户资料
 //        dd($user);
 //    });
-    Route::get("/user", "WechatController@user");
+    Route::get("/prize/list", "WechatController@prizelist");
+    Route::get("/prize/detail/{id}", "WechatController@prize");
 
 });

@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prize;
 use Illuminate\Http\Request;
 
 class WechatController extends Controller
 {
 
-    public function user(){
+    public function prizelist(){
+        $list = Prize::where(array(
+            "checked" => "1",
+        ))->all();
 
-        //$userinfo = session("wechat.oauth_user");
-        //var_dump($userinfo);
+        var_dump($list);
+    }
 
-
-
-        //dd(session("wechat.oauth_user"));
-
-        dd(session("wxuser"));
-
-        die;
-
-        $app = app('wechat.official_account');
-        $app->server->push(function($message){
-            return "欢迎关注 overtrue！";
-        });
-
-
-
-        return $app->server->serve();
-
+    public function prize($id){
+        echo id;
     }
 }
