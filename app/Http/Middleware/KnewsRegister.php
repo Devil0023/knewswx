@@ -32,13 +32,22 @@ class KnewsRegister
             $newuser->headimgurl = $original["headimgurl"];
             $newuser->privilege  = json_encode($original["privilege"]);
             $newuser->unionid    = isset($original["unionid"])? $original["unionid"]: "";
-            $newuser->fill       = 0;
+            $newuser->fill        = 0;
 
             $newuser->save();
-            var_dump($newuser->id);
+
+            session(['wxuser.id'     => $newuser->id]);
+            session(['wxuser.fill'   => $newuser->fill]);
+            session(['wxuser.mobile' => $newuser->mobile]);
+            session(['wxuser.address'=> $newuser->address]);
 
         }else{
-            var_dump("yes");
+
+            session(['wxuser.id'     => $wxuser->id]);
+            session(['wxuser.fill'   => $wxuser->fill]);
+            session(['wxuser.mobile' => $wxuser->mobile]);
+            session(['wxuser.address'=> $wxuser->address]);
+
         }
 
         return $next($request);
