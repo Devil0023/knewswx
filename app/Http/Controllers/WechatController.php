@@ -13,17 +13,16 @@ class WechatController extends Controller
 
         $time = time();
         $key  = "KnewsWX-Prizelist-".date("YmdHi", $time);
+        $json = @Redis::get($key);
 
-        $json = Redis::get($key);
-        if($json){
-            $list = json_decode($json, true);
-        }else{
+        if(empty($json)){
             $now  = date("Y-m-d H:i:s", $time);
-            $list = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->get()->toJson();
-            exit($list); die;
+            $json = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->get()->toJson();
+            Redis::set($key, $json, 60);
+            echo 111111;
         }
 
-
+        $list = json_decode($json, true);
         var_dump($list);
     }
 
