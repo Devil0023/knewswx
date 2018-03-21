@@ -14,7 +14,7 @@ class WechatController extends Controller
 
 
 
-        dd(session("wechat.oauth_user"));
+        //dd(session("wechat.oauth_user"));
 
         dd(session("wxuser"));
 
