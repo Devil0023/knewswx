@@ -17,24 +17,21 @@ class KnewsRegister
     public function handle($request, Closure $next)
     {
         $userinfo = session("wechat.oauth_user");
-        $wxuser   = Wxuser::where("openid", "=", $userinfo["default"]->openid)->first();
-
         $original = $userinfo["default"]->original;
-
-        print_r($original);
-
-        die;
+        $wxuser   = Wxuser::where("openid", "=", $userinfo["default"]->openid)->first();
 
         if(is_null($wxuser)){
             $newuser = new Wxuser();
-            $newuser->openid     = $userinfo["default"]->openid;
-            $newuser->nickname   = $userinfo["default"]->nickname;
-            $newuser->sex         = $userinfo["default"]->sex;
-            $newuser->province   = $userinfo["default"]->province;
-            $newuser->city        = $userinfo["default"]->city;
-            $newuser->headimgurl = $userinfo["default"]->headimgurl;
-            $newuser->privilege  = json_encode($userinfo["default"]->privilege);
-            $newuser->unionid    = isset($userinfo["default"]->unionid)? $userinfo["default"]->unionid: "";
+            $newuser->openid     = $original["openid"];
+            $newuser->nickname   = $original["nickname"];
+            $newuser->sex         = $original["sex"];
+            $newuser->language   = $original["language"];
+            $newuser->province   = $original["province"];
+            $newuser->city        = $original["city"];
+            $newuser->country    = $original["country"];
+            $newuser->headimgurl = $original["headimgurl"];
+            $newuser->privilege  = json_encode($original["openid"]);
+            $newuser->unionid    = isset($original["openid"])? $original["openid"]: "";
 
             $newuser->save();
             var_dump($newuser->id);
