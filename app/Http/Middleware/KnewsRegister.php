@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class WechatOauth
+class KnewsRegister
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,6 @@ class WechatOauth
     {
         $userinfo = session("wechat.oauth_user");
         var_dump($userinfo);
-
 
         return $next($request);
     }
