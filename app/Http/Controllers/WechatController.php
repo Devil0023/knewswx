@@ -9,7 +9,9 @@ class WechatController extends Controller
 {
 
     public function prizelist(){
-        $list = Prize::where("checked", 1)->all();
+        $now  = time();
+        $list = Prize::where(["checked" , "=", 1], ["stime" ,"<=", $now], ["etime", ">", $now])->get();
+        
         var_dump($list);
     }
 
