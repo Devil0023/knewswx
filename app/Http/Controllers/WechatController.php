@@ -18,7 +18,7 @@ class WechatController extends Controller
         if(empty($json)){
             $now  = date("Y-m-d H:i:s", $time);
             $json = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->get()->toJson();
-            Redis::set($key, $json, 60);
+            Redis::setex($key, 60, $json);
             echo 111111;
         }
 
