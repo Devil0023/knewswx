@@ -15,6 +15,10 @@ class WechatOauth
      */
     public function handle($request, Closure $next)
     {
+        $userinfo = session("wechat.oauth_user");
+        var_dump($userinfo);
+
+
         return $next($request);
     }
 }

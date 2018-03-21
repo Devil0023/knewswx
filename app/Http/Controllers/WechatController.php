@@ -6,19 +6,13 @@ use Illuminate\Http\Request;
 
 class WechatController extends Controller
 {
-    public function __construct(){
-        $userinfo = session('wechat.oauth_user');
-        var_dump($userinfo);
-        echo 2;
-
-        die;
-    }
 
     public function user(){
 
         //$userinfo = session("wechat.oauth_user");
         //var_dump($userinfo);
 
+        echo 1;
 
         die;
 
