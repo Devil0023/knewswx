@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Getpoints;
 use App\Models\Prize;
 use App\Models\Wxuser;
+use App\Models\Pointslog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 

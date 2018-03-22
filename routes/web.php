@@ -32,7 +32,7 @@ Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi
     //积分明细
     Route::get("/usercenter/detail", "WechatController@detail");
 
-    
+
     //测试
     Route::get("/usercenter/pointstest/{rid}", "WechatController@pointstest");
 });
