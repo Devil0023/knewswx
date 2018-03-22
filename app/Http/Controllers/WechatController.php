@@ -35,7 +35,10 @@ class WechatController extends Controller
             $message = array("error_code" => "400001", "error_message" => "存在参数为空");
         }else{
 
-            $result  = Wxuser::find($wxuser["id"])->update(array(
+            $model   = Wxuser::find($wxuser["id"]);
+            $fillchk = $model->fill;
+
+            $result  = $model->update(array(
                 "address" => $request->address,
                 "mobile"  => $request->mobile,
                 "fill"    => 1,
@@ -43,7 +46,7 @@ class WechatController extends Controller
 
             if($result){
 
-                if($wxuser["fill"] === 0){  //第一次补完数据
+                if(intval($fillchk) === 0){  //第一次补完数据
                     Getpoints::getPointsByRule($wxuser["id"], 2);
                 }
 
