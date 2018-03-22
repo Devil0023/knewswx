@@ -32,9 +32,37 @@ class WechatController extends Controller
 //    }
 
     public function exchange($pid){
-        //$wxuser = session("wxuser");
-        //$wxuser =
 
+        $prize  = Prize::find($pid);
+        $now    = time();
+
+        if(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
+            $message = array("error_code" => "40003", "error_message" => "不在奖品兑换时间内");
+        }else{
+
+            $pop    = @Redis::rpop("WXPrizePoolList-".$pid);
+            if(is_null($pop)){
+                $message = array("error_code" => "40004", "error_message" => "奖品已被兑换完");
+            }else{
+
+                $wxuser = session("wxuser");
+                $wxuser = Wxuser::find($wxuser["id"]);
+
+                $result = Getpoints::getPoints($wxuser["id"], $prize->cost, "兑换奖品：".$prize->prize);
+
+                if($result === 1){
+                    $message = array("error_code" => "0", "error_message" => "Success");
+                }elseif($result === 0){
+                    $message = array("error_code" => "40005", "error_message" => "积分余额不足");
+                }else{
+                    $message = array("error_code" => "40006", "error_message" => "兑换失败");
+                }
+
+            }
+
+        }
+
+        exit(json_encode($message));
     }
 
     public function detail(){

@@ -10,11 +10,7 @@ class Getpoints extends Model
     //
     static public function getPointsByRule($uid, $ruleid){
 
-        //用户不存在
         $user = Wxuser::find($uid);
-        if(is_null($user)){
-            return false;
-        }
 
         //规则不存在
         $rule = Pointsrule::find($ruleid);
@@ -63,15 +59,12 @@ class Getpoints extends Model
     }
 
     static public function getPoints($uid, $points, $desc){
-        //用户不存在
+
         $user = Wxuser::find($uid);
-        if(is_null($user)){
-            return false;
-        }
 
         //积分不够扣除
         if($user->points + $points < 0){
-            return false;
+            return 0;
         }
 
         DB::beginTransaction();
@@ -87,12 +80,12 @@ class Getpoints extends Model
             ));
 
             DB::commit();
-            return true;
+            return 1;
 
         }catch(Exception $e){
 
             DB::rollBack();
-            return false;
+            return 2;
         }
 
     }
