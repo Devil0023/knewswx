@@ -37,17 +37,21 @@ class KnewsRegister
 
             $newuser->save();
 
-            session(['wxuser.id'     => $newuser->id]);
-            session(['wxuser.fill'   => $newuser->fill]);
-            session(['wxuser.mobile' => $newuser->mobile]);
-            session(['wxuser.address'=> $newuser->address]);
+            session(['wxuser.id'         => $newuser->id]);
+            session(['wxuser.fill'      => $newuser->fill]);
+            session(['wxuser.mobile'    => $newuser->mobile]);
+            session(['wxuser.address'   => $newuser->address]);
+            session(['wxuser.nickname'  => $newuser->nickname]);
+            session(['wxuser.headimgurl'=> $newuser->headimgurl]);
 
         }else{
 
-            session(['wxuser.id'     => $wxuser->id]);
-            session(['wxuser.fill'   => $wxuser->fill]);
-            session(['wxuser.mobile' => $wxuser->mobile]);
-            session(['wxuser.address'=> $wxuser->address]);
+            session(['wxuser.id'        => $wxuser->id]);
+            session(['wxuser.fill'      => $wxuser->fill]);
+            session(['wxuser.mobile'    => $wxuser->mobile]);
+            session(['wxuser.address'   => $wxuser->address]);
+            session(['wxuser.nickname'  => $wxuser->nickname]);
+            session(['wxuser.headimgurl'=> $wxuser->headimgurl]);
 
         }
 

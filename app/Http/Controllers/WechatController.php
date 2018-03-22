@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Redis;
 class WechatController extends Controller
 {
 
+    public function index(){
+
+        $wxuser = session("wxuser");
+
+        var_dump($wxuser);
+
+
+    }
+
     public function prizelist(){
 
         $time = time();
