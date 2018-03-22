@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Getpoints;
 use App\Models\Prize;
 use App\Models\Wxuser;
 use Illuminate\Http\Request;
@@ -15,12 +16,22 @@ class WechatController extends Controller
         return view("usercenter.index", compact("wxuser"));
     }
 
+    public function pointstest($rid){
+        $wxuser = session("wxuser");
+        $result = Getpoints::getPointsByRule($wxuser["id"], $rid);
+        var_dump($result);
+
+        $new    = Wxuser::find($wxuser["id"]);
+        var_dump($new->points);
+    }
+
     public function updateUser(Request $request){
         $wxuser = session("wxuser");
 
         if(empty($request->address) || empty($request->mobile)){
             $message = array("error_code" => "400001", "error_message" => "存在参数为空");
         }else{
+
             $result  = Wxuser::find($wxuser["id"])->update(array(
                 "address" => $request->address,
                 "mobile"  => $request->mobile,

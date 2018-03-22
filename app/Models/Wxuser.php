@@ -11,5 +11,5 @@ class Wxuser extends Model
 
     protected $table = 'wxuser';
 
-    protected $fillable = ["address", "mobile", "fill"];
+    protected $fillable = ["address", "mobile", "fill", "points"];
 }
