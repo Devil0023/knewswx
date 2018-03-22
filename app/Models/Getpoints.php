@@ -46,7 +46,7 @@ class Getpoints extends Model
                     "uid"    => $user->id,
                     "openid" => $user->openid,
                     "points" => $rule->points,
-                    "desc"   => $rule->desc,
+                    "desc"   => $rule->intro,
                 ));
 
             }
