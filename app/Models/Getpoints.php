@@ -70,7 +70,7 @@ class Getpoints extends Model
         }
 
         //积分不够扣除
-        if($uid->points + $points < 0){
+        if($user->points + $points < 0){
             return false;
         }
 
