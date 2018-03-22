@@ -43,6 +43,7 @@ class KnewsRegister
             session(['wxuser.address'   => $newuser->address]);
             session(['wxuser.nickname'  => $newuser->nickname]);
             session(['wxuser.headimgurl'=> $newuser->headimgurl]);
+            session(['wxuser.points'     => $newuser->points]);
 
         }else{
 
@@ -52,6 +53,7 @@ class KnewsRegister
             session(['wxuser.address'   => $wxuser->address]);
             session(['wxuser.nickname'  => $wxuser->nickname]);
             session(['wxuser.headimgurl'=> $wxuser->headimgurl]);
+            session(['wxuser.points'     => $wxuser->points]);
 
         }
 

@@ -10,12 +10,8 @@ class WechatController extends Controller
 {
 
     public function index(){
-
         $wxuser = session("wxuser");
-
-        var_dump($wxuser);
-
-
+        return view("usercenter.index", compact("wxuser"));
     }
 
     public function prizelist(){
