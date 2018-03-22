@@ -4,7 +4,7 @@
 {{$wxuser["fill"]}}
 
 
-<form method="POST" action="/usercenter/update">
+<form method="POST" action="/wechat/usercenter/update">
     {{csrf_field()}}
     <input type="text" name="address" value="{{$wxuser["address"]}}"/>
     <input type="text" name="mobile" value="{{$wxuser["mobile"]}}"/>
