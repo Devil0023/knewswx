@@ -14,6 +14,8 @@ class WechatController extends Controller
 
     public function index(){
         $wxuser = session("wxuser");
+        $wxuser = Wxuser::find($wxuser["id"])->toArray();
+
         return view("usercenter.index", compact("wxuser"));
     }
 
@@ -28,6 +30,12 @@ class WechatController extends Controller
 //        $new    = Wxuser::find($wxuser["id"]);
 //        var_dump($new->points);
 //    }
+
+    public function exchange($pid){
+        //$wxuser = session("wxuser");
+        //$wxuser =
+
+    }
 
     public function detail(){
         $wxuser = session("wxuser");
