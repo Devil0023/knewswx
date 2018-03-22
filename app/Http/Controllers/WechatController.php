@@ -18,7 +18,10 @@ class WechatController extends Controller
 
     public function pointstest($rid){
         $wxuser = session("wxuser");
-        $result = Getpoints::getPointsByRule($wxuser["id"], $rid);
+        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
+        //var_dump($result);
+
+        $result = Getpoints::getPoints($wxuser["id"], -5, "兑换积分");
         var_dump($result);
 
         $new    = Wxuser::find($wxuser["id"]);

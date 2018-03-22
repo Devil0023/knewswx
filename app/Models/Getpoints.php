@@ -62,7 +62,38 @@ class Getpoints extends Model
 
     }
 
-    static public function getPoints($uid, $method, $points){
+    static public function getPoints($uid, $points, $desc){
+        //用户不存在
+        $user = Wxuser::find($uid);
+        if(is_null($user)){
+            return false;
+        }
+
+        //积分不够扣除
+        if($uid->points + $points < 0){
+            return false;
+        }
+
+        DB::beginTransaction();
+        try{
+
+            $user->increment("points", $points);
+
+            Pointslog::create(array(
+                "uid"    => $user->id,
+                "openid" => $user->openid,
+                "points" => $points,
+                "desc"   => $desc,
+            ));
+
+            DB::commit();
+            return true;
+
+        }catch(Exception $e){
+
+            DB::rollBack();
+            return false;
+        }
 
     }
 }
