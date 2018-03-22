@@ -76,7 +76,10 @@ class WxuserController extends Controller
             $grid->id('ID')->sortable();
 
             $grid->nickname("昵称");
-            $grid->headimgurl("头像");
+            $grid->headimgurl("头像")->display(function ($img){
+                return "<img src=\"$img\" style=\"width:25px;\">";
+            });
+
             $grid->column("fill", "完善资料")->display(function ($fill){
                 return ($fill)? "是": "否";
             });
@@ -95,7 +98,7 @@ class WxuserController extends Controller
 
             $grid->actions(function ($actions){
                 $actions->disableDelete();
-                $actions->append('<a href="'.url("admin/points/log?uid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
+                $actions->append('<a href="'.url("admin/points/".$actions->getKey()."/log").'"><i class="fa fa-eye"></i></a>');
             });
 
             $grid->perPages([30, 40, 50]);

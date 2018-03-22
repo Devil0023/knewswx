@@ -18,7 +18,7 @@ Route::group([
     $router->resource("/exchange", ExchangeController::class);
 
     $router->resource('/points/rule', PointsruleController::class);
-    $router->resource("/points/log", PointslogController::class);
+    $router->resource("/points/{uid}/log", PointslogController::class);
 
     $router->resource('/wxuser', WxuserController::class);
 
