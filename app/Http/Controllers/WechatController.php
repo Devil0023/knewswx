@@ -24,9 +24,15 @@ class WechatController extends Controller
             $result  = Wxuser::find($wxuser["id"])->update(array(
                 "address" => $request->address,
                 "mobile"  => $request->mobile,
+                "fill"    => 1,
             ));
 
             if($result){
+
+                session(['wxuser.fill'    => 1]);
+                session(['wxuser.mobile'  => $request->mobile]);
+                session(['wxuser.address' => $request->address]);
+
                 $message = array("error_code" => "0", "error_message" => "Success");
             }else{
                 $message = array("error_code" => "400002", "error_message" => "资料失败");
