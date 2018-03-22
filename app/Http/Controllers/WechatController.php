@@ -29,6 +29,7 @@ class WechatController extends Controller
     }
 
     public function prize($id){
+
         $key  = "KnewsWX-PrizeDetail-".$id;
         $json = @Redis::get($key);
 

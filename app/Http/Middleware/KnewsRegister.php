@@ -33,6 +33,7 @@ class KnewsRegister
             $newuser->privilege  = json_encode($original["privilege"]);
             $newuser->unionid    = isset($original["unionid"])? $original["unionid"]: "";
             $newuser->fill        = 0;
+            $newuser->points      = 0;
 
             $newuser->save();
 
