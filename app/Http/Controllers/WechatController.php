@@ -37,12 +37,12 @@ class WechatController extends Controller
         $now    = time();
 
         if(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
-            $message = array("error_code" => "40003", "error_message" => "不在奖品兑换时间内");
+            $message = array("error_code" => "400003", "error_message" => "不在奖品兑换时间内");
         }else{
 
             $pop    = @Redis::rpop("WXPrizePoolList-".$pid);
             if(is_null($pop)){
-                $message = array("error_code" => "40004", "error_message" => "奖品已被兑换完");
+                $message = array("error_code" => "400004", "error_message" => "奖品已被兑换完");
             }else{
 
                 $wxuser = session("wxuser");
@@ -53,9 +53,9 @@ class WechatController extends Controller
                 if($result === 1){
                     $message = array("error_code" => "0", "error_message" => "Success");
                 }elseif($result === 0){
-                    $message = array("error_code" => "40005", "error_message" => "积分余额不足");
+                    $message = array("error_code" => "400005", "error_message" => "积分余额不足");
                 }else{
-                    $message = array("error_code" => "40006", "error_message" => "兑换失败");
+                    $message = array("error_code" => "400006", "error_message" => "兑换失败");
                 }
 
             }
@@ -109,7 +109,7 @@ class WechatController extends Controller
 
                 $message = array("error_code" => "0", "error_message" => "Success");
             }else{
-                $message = array("error_code" => "400002", "error_message" => "资料失败");
+                $message = array("error_code" => "400002", "error_message" => "完善资料失败");
             }
         }
 
