@@ -27,12 +27,12 @@ Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi
 
     //用户中心
     Route::get("/usercenter/index", "WechatController@index");
-    //提交
+    //完善信息
     Route::post("/usercenter/update", "WechatController@updateUser");
+    //积分明细
+    Route::get("/usercenter/detail", "WechatController@detail");
 
-
-
-
+    
     //测试
     Route::get("/usercenter/pointstest/{rid}", "WechatController@pointstest");
 });

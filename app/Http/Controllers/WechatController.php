@@ -28,6 +28,22 @@ class WechatController extends Controller
 //        var_dump($new->points);
 //    }
 
+    public function detail(){
+        $wxuser = session("wxuser");
+
+        $key    = "KnewsWX-PointsLog-".$wxuser["id"];
+        $json   = @Redis::get($key);
+
+        if(empty($json)){
+            $json   = Pointslog::where("uid", $wxuser["id"])->orderBy("created_at", "desc")->take(10)->get()->toJson();
+            @Redis::setex($key, 3, $json);
+        }
+
+        $list   = json_decode($json, true);
+
+        var_dump($list);
+    }
+
     public function updateUser(Request $request){
         $wxuser = session("wxuser");
 
@@ -71,7 +87,9 @@ class WechatController extends Controller
 
         if(empty($json)){
             $now  = date("Y-m-d H:i:s", $time);
-            $json = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)->where("num", ">", 0)->get()->toJson();
+            $json = Prize::where("checked", 1)->where("stime", "<=", $now)->where("etime", ">", $now)
+                    ->where("num", ">", 0)->orderBy("etime", "asc")->get()->toJson();
+
             Redis::setex($key, 60, $json);
         }
 
