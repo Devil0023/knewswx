@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Getpoints extends Model
 {
     //
-    public function getPointsByRule($uid, $ruleid){
+    static public function getPointsByRule($uid, $ruleid){
 
         //用户不存在
         $user = Wxuser::find($uid);
@@ -61,7 +61,7 @@ class Getpoints extends Model
 
     }
 
-    public function getPoints($uid, $method, $points){
+    static public function getPoints($uid, $method, $points){
 
     }
 }
