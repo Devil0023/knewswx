@@ -16,17 +16,17 @@ class WechatController extends Controller
         return view("usercenter.index", compact("wxuser"));
     }
 
-    public function pointstest($rid){
-        $wxuser = session("wxuser");
-        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
-        //var_dump($result);
-
-        $result = Getpoints::getPoints($wxuser["id"], -5, "兑换积分");
-        var_dump($result);
-
-        $new    = Wxuser::find($wxuser["id"]);
-        var_dump($new->points);
-    }
+//    public function pointstest($rid){
+//        $wxuser = session("wxuser");
+//        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
+//        //var_dump($result);
+//
+//        $result = Getpoints::getPoints($wxuser["id"], -5, "兑换积分");
+//        var_dump($result);
+//
+//        $new    = Wxuser::find($wxuser["id"]);
+//        var_dump($new->points);
+//    }
 
     public function updateUser(Request $request){
         $wxuser = session("wxuser");
@@ -42,6 +42,10 @@ class WechatController extends Controller
             ));
 
             if($result){
+
+                if($wxuser["fill"] === 0){  //第一次补完数据
+                    Getpoints::getPointsByRule($wxuser["id"], 2);
+                }
 
                 session(['wxuser.fill'    => 1]);
                 session(['wxuser.mobile'  => $request->mobile]);
