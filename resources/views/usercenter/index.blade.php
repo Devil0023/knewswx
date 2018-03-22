@@ -4,7 +4,7 @@
 {{$wxuser["fill"]}}
 
 
-<form method="POST" action="{{route('usercenter.update')}}">
+<form method="POST" action="/usercenter/update">
     {{csrf_field()}}
     <input type="text" name="address" value="{{$wxuser["address"]}}"/>
     <input type="text" name="mobile" value="{{$wxuser["mobile"]}}"/>
