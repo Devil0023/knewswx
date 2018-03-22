@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Prize;
+use App\Models\Wxuser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -12,6 +13,27 @@ class WechatController extends Controller
     public function index(){
         $wxuser = session("wxuser");
         return view("usercenter.index", compact("wxuser"));
+    }
+
+    public function updateUser(Request $request){
+        $wxuser = session("wxuser");
+
+        if(empty($request->address) || empty($request->mobile)){
+            $message = array("error_code" => "400001", "error_message" => "存在参数为空");
+        }else{
+            $result  = Wxuser::find($wxuser["id"])->update(array(
+                "address" => $request->address,
+                "mobile"  => $request->mobile,
+            ));
+
+            if($result){
+                $message = array("error_code" => "0", "error_message" => "Success");
+            }else{
+                $message = array("error_code" => "400002", "error_message" => "资料失败");
+            }
+        }
+
+        exit(json_encode($message));
     }
 
     public function prizelist(){
