@@ -16,9 +16,9 @@ class PointslogController extends Controller
     use ModelForm;
     public $uid = 0;
 
-    public function __construct(Request $request){
-        $this->uid = $request->uid;
-    }
+//    public function __construct(Request $request){
+//        $this->uid = $request->uid;
+//    }
 
     /**
      * Index interface.
