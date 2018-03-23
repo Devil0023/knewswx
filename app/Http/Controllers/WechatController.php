@@ -44,6 +44,7 @@ class WechatController extends Controller
         }else{
 
             $pop    = @Redis::rpop("WXPrizePoolList-".$pid);
+
             if(is_null($pop)){
                 $message = array("error_code" => "400004", "error_message" => "奖品已被兑换完");
             }else{
@@ -76,7 +77,13 @@ class WechatController extends Controller
 
             }
 
+            if($message["error_code"] !== "0"){
+                @Redis::lpush("WXPrizePoolList-".$pid, 1);
+            }
+
         }
+
+
 
         exit(json_encode($message));
     }
