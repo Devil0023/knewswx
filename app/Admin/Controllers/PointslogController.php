@@ -30,8 +30,8 @@ class PointslogController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header('header');
-            $content->description('description');
+            $content->header('积分日志');
+            $content->description('查看积分日志详情');
 
             $content->body($this->grid());
         });
