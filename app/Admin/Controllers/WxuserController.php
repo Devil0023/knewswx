@@ -90,6 +90,8 @@ class WxuserController extends Controller
             $grid->disableCreateButton();
             $grid->disableExport();
 
+            $grid->model()->orderBy("id", "desc");
+
             $grid->tools(function ($tools){
                 $tools->batch(function ($batch) {
                     $batch->disableDelete();
@@ -99,6 +101,10 @@ class WxuserController extends Controller
             $grid->actions(function ($actions){
                 $actions->disableDelete();
                 $actions->append('<a href="'.url("admin/points/log?uid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
+            });
+
+            $grid->filter(function ($filter){
+                $filter->like("昵称", "nickname");
             });
 
             $grid->perPages([30, 40, 50]);

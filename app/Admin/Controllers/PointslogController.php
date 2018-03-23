@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Pointslog;
 
+use App\Models\Wxuser;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -27,10 +28,7 @@ class PointslogController extends Controller
      */
     public function index()
     {
-        echo $this->uid; echo "<br><br>";
-
         return Admin::content(function (Content $content) {
-
             $content->header('header');
             $content->description('description');
 
@@ -78,6 +76,11 @@ class PointslogController extends Controller
      */
     protected function grid()
     {
+        if($this->uid){
+            $wxuser = Wxuser::find($this->uid);
+
+        }
+
         return Admin::grid(Pointslog::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
