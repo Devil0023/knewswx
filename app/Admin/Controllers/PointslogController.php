@@ -98,6 +98,7 @@ class PointslogController extends Controller
             $grid->updated_at();
 
             $grid->disableExport();
+            $grid->disableCreateButton();
 
             $grid->tools(function ($tools){
                 $tools->batch(function ($batch) {
