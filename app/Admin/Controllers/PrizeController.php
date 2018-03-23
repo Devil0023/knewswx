@@ -106,7 +106,6 @@ class PrizeController extends Controller
                 return "<img src=\"/uploads/{$img}\" style=\"width:25px;\"/>";
             });
 
-            $grid->num("奖品数量");
             $grid->cost("兑换积分");
 
             $grid->stime("开始时间");
@@ -115,6 +114,8 @@ class PrizeController extends Controller
             $grid->checked("发布")->display(function ($checked) {
                 return $checked ? '是' : '否';
             });
+
+            $grid->num("奖品数量");
 
             $grid->column("id", "剩余")->display(function ($id){
                 $left = Redis::llen("WXPrizePoolList-".$id);

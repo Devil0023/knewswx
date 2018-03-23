@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exchange;
 use App\Models\Getpoints;
 use App\Models\Prize;
 use App\Models\Wxuser;
@@ -50,10 +51,23 @@ class WechatController extends Controller
                 $wxuser = session("wxuser");
                 $wxuser = Wxuser::find($wxuser["id"]);
 
-                $result = Getpoints::getPoints($wxuser["id"], $prize->cost, "兑换奖品：".$prize->prize);
+                $result = Getpoints::getPoints($wxuser["id"], (0 - $prize->cost), "兑换奖品：".$prize->prize);
 
                 if($result === 1){
-                    $message = array("error_code" => "0", "error_message" => "Success");
+
+                    $exchange_result = Exchange::save(array(
+                        "pid" => $prize->id,
+                        "uid" => $wxuser->id,
+                        "openid" => $wxuser->openid,
+                    ));
+
+                    if($exchange_result){
+                        $message = array("error_code" => "0", "error_message" => "Success");
+                    }else{
+                        $message = array("error_code" => "400007", "error_message" => "兑换信息保存失败，请联系管理员");
+                    }
+
+
                 }elseif($result === 0){
                     $message = array("error_code" => "400005", "error_message" => "积分余额不足");
                 }else{
