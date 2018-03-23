@@ -12,7 +12,4 @@ class Exchange extends Model
     protected $table = 'exchange';
     protected $fillable = ["pid", "uid", "openid"];
 
-    public function wxuser(){
-        return $this->hasOne(Wxuser::class, "id", "uid");
-    }
 }

@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Models\Exchange;
 
 use App\Models\Prize;
+use App\Models\Wxuser;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -90,7 +91,8 @@ class ExchangeController extends Controller
                 }
             }
 
-            $grid->wxuser("用户信息")->display(function ($wxuser){
+            $grid->uid("用户昵称")->display(function ($uid){
+                $wxuser = Wxuser::find($uid);
                 return $wxuser->nickname;
             });
 
@@ -123,6 +125,10 @@ class ExchangeController extends Controller
         return Admin::form(Exchange::class, function (Form $form) {
 
             $form->display('id', 'ID');
+
+            $form->display("uid", function ($uid){
+                return $uid;
+            });
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
