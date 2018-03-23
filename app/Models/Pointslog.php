@@ -13,6 +13,6 @@ class Pointslog extends Model
     protected $fillable = ["uid", "openid", "points", "desc"];
 
     public function wxuser(){
-        return $this->belongsTo(Wxuser::class, "uid", "id");
+        return $this->belongsTo(Wxuser::class,  "id", "uid");
     }
 }
