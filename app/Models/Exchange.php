@@ -10,6 +10,7 @@ class Exchange extends Model
     use SoftDeletes;
 
     protected $table = 'exchange';
+    protected $fillable = ["pid", "uid", "openid"];
 
     public function wxuser(){
         return $this->belongsTo(Wxuser::class, "id", "uid");
