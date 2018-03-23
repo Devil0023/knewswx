@@ -20,7 +20,7 @@ Route::group([
     $router->resource('/points/rule', PointsruleController::class);
 
     //$router->resource("/points/{uid}/log", PointslogController::class);
-    $router->resource("/points/uid.log", PointslogController::class);
+    $router->resource("user.log", PointslogController::class);
 
     $router->resource('/wxuser', WxuserController::class);
 
