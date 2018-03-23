@@ -29,7 +29,7 @@ class PointslogController extends Controller
      */
     public function index()
     {
-
+        echo $this->uid; echo "<br><br>";
 
         return Admin::content(function (Content $content) {
 
