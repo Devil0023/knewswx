@@ -76,14 +76,23 @@ class PointslogController extends Controller
      */
     protected function grid()
     {
-        if($this->uid){
-            $wxuser = Wxuser::find($this->uid);
 
-        }
 
         return Admin::grid(Pointslog::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->points("积分");
+            $grid->desc("说明");
+
+            $grid->model()->orderBy("id", "desc");
+
+
+            if($this->uid){
+                $wxuser = Wxuser::find($this->uid);
+                if($wxuser->id){
+                    $grid->model()->where("uid", $wxuser->id);
+                }
+            }
 
             $grid->created_at();
             $grid->updated_at();

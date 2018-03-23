@@ -104,7 +104,7 @@ class WxuserController extends Controller
             });
 
             $grid->filter(function ($filter){
-                $filter->like("昵称", "nickname");
+                $filter->like("nickname", "昵称");
             });
 
             $grid->perPages([30, 40, 50]);
