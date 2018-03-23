@@ -122,6 +122,8 @@ class WxuserController extends Controller
 
             $form->display('id', 'ID');
             $form->display("nickname", "昵称");
+            $form->display("points", "当前积分");
+
             $form->display("sex", "性别")->with(function ($sex){
                 switch($sex){
                     case 1; $value = "男"; break;
@@ -136,11 +138,12 @@ class WxuserController extends Controller
             $form->display("city", "城市");
             $form->display("country", "国家");
             $form->display("headimgurl", "头像")->with(function ($img){
-                return "<img src=\".$img.\" style=\"width: 100px;\">";
+                return "<img src=\"$img\" style=\"width: 132px;\">";
             });
 
             $form->display("mobile", "手机");
             $form->display("address", "地址");
+
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
