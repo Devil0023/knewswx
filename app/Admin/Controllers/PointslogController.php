@@ -16,17 +16,16 @@ class PointslogController extends Controller
     use ModelForm;
     public $uid = 0;
 
-//    public function __construct(Request $request){
-//        $this->uid = $request->uid;
-//    }
-
     /**
      * Index interface.
      *
      * @return Content
      */
-    public function index()
+    public function index(Request $request)
     {
+        $uid = $request->uid;
+        echo $uid;
+
         return Admin::content(function (Content $content) {
 
             $content->header('header');
