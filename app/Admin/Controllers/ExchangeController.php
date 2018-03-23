@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Exchange;
 
+use App\Models\Prize;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Facades\Admin;
@@ -19,7 +20,6 @@ class ExchangeController extends Controller
 
     public function __construct(Request $request){
         $this->pid = $request->pid;
-        echo $this->pid;
     }
 
     /**
@@ -81,6 +81,18 @@ class ExchangeController extends Controller
         return Admin::grid(Exchange::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+
+
+            if($this->pid){
+                $prize = Prize::find($this->pid);
+                if($prize->id){
+                    $grid->model()->where("pid", $this->pid);
+                }
+            }
+
+            $grid->wxuser("用户信息")->display(function ($wxuser){
+                return $wxuser->nickname;
+            });
 
 
             $grid->created_at();
