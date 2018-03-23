@@ -13,7 +13,7 @@
 
 <br/><br/>
 
-<form method="POST" action="/wechat/usercenter/exchange/2">
+<form method="POST" action="/wechat/usercenter/exchange/3">
     {{csrf_field()}}
     <button type="submit">submit</button>
 </form>
