@@ -80,6 +80,8 @@ class WxuserController extends Controller
                 return "<img src=\"$img\" style=\"width:25px;\">";
             });
 
+            $grid->points("当前积分");
+
             $grid->column("fill", "完善资料")->display(function ($fill){
                 return ($fill)? "是": "否";
             });
