@@ -16,9 +16,7 @@ class PointslogController extends Controller
     use ModelForm;
     public $uid = 0;
 
-    public function __invoke()
-    {
-        // TODO: Implement __invoke() method.
+    public function __construct(){
         $this->uid = @intval($_GET["uid"]);
     }
 
