@@ -15,8 +15,8 @@ class WechatController extends Controller
     private $wxuser = array();
 
     public function __construct(){
-        //$wxuser = session("wxuser");
-        //dd($wxuser);
+        $wxuser = session("wxuser");
+        var_dump($wxuser);
         //$this->wxuser = Wxuser::find($wxuser["id"])->toArray();
     }
 

@@ -57,7 +57,7 @@ class KnewsRegister
 
         }
 
-        dd("wxuser"); die;
+        var_dump(session("wxuser")); die;
         return $next($request);
     }
 }
