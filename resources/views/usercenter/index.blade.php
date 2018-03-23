@@ -13,8 +13,8 @@
 
 <br/><br/>
 
-兑换奖品3：
-<form method="POST" action="/wechat/usercenter/exchange/3">
+兑换奖品2：
+<form method="POST" action="/wechat/usercenter/exchange/2">
     {{csrf_field()}}
     <button type="submit">submit</button>
 </form>

@@ -51,9 +51,16 @@ class WechatController extends Controller
 
         $prize  = Prize::find($pid);
         $now    = time();
+        $wxuser = session("wxuser");
+        $wxuser = Wxuser::find($wxuser["id"]);
+
+        $logkey = "KnewsWx-ExchangeLog-".$prize->id."-".$wxuser->id;
+        $logchk = @Redis::get($logkey);
 
         if(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
             $message = array("error_code" => "400003", "error_message" => "不在奖品兑换时间内");
+        }elseif(intval($logchk) === 1{
+            $message = array("error_code" => "400010", "error_message" => "同一奖品在半年内不得重复兑换");
         }else{
 
             $pop    = @Redis::rpop("WXPrizePoolList-".$pid);
@@ -62,8 +69,7 @@ class WechatController extends Controller
                 $message = array("error_code" => "400004", "error_message" => "奖品已被兑换完");
             }else{
 
-                $wxuser = session("wxuser");
-                $wxuser = Wxuser::find($wxuser["id"]);
+
 
                 $result = Getpoints::getPoints($wxuser["id"], (0 - $prize->cost), "兑换奖品：".$prize->prize);
 
@@ -76,6 +82,9 @@ class WechatController extends Controller
                     ));
 
                     if($exchange_result){
+
+                        @Redis::setex($logkey, 50, 1);
+
                         $message = array("error_code" => "0", "error_message" => "Success");
                     }else{
                         $message = array("error_code" => "400007", "error_message" => "兑换信息保存失败，请联系管理员");
