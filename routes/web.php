@@ -38,5 +38,5 @@ Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi
 
 
     //测试
-    //Route::get("/usercenter/pointstest/{rid}", "WechatController@pointstest");
+    Route::get("/usercenter/pointstest", "WechatController@pointstest");
 });

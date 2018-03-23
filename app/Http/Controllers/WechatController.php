@@ -19,7 +19,7 @@ class WechatController extends Controller
         return view("usercenter.index", compact("wxuser"));
     }
 
-//    public function pointstest($rid){
+    public function pointstest(){
 //        $wxuser = session("wxuser");
 //        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
 //        //var_dump($result);
@@ -29,7 +29,9 @@ class WechatController extends Controller
 //
 //        $new    = Wxuser::find($wxuser["id"]);
 //        var_dump($new->points);
-//    }
+
+
+    }
 
     public function exchange($pid){
 
