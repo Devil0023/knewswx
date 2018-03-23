@@ -27,15 +27,21 @@ class WechatController extends Controller
 
         $signkey = "KnewsWX-UserSign-".$wxuser->id;
         $signchk = @Redis::get($signkey);
-        if($signchk === 1){
+
+        if(intval($signchk) === 1){
             $message = array("error_code" => "400008", "error_message" => "今日已签到");
         }else{
 
-            $length = strtotime(date("Y-m-d 23:59:59")) - time();
-            @Redis::setex($signkey, $length, 1);
+            $result = Getpoints::getPointsByRule($wxuser->id, 1);
 
-            Getpoints::getPointsByRule($wxuser->id, 1);
-            $message = array("error_code" => "0", "error_message" => "Success");
+            if($result){
+                $length = strtotime(date("Y-m-d 23:59:59")) - time();
+                @Redis::setex($signkey, $length, 1);
+                $message = array("error_code" => "0", "error_message" => "Success");
+            }else{
+                $message = array("error_code" => "400009", "error_message" => "签到失败");
+            }
+
         }
 
         exit(json_encode($message));
