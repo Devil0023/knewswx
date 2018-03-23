@@ -16,6 +16,12 @@ class PointslogController extends Controller
     use ModelForm;
     public $uid = 0;
 
+    public function __invoke()
+    {
+        // TODO: Implement __invoke() method.
+        $this->uid = @intval($_GET["uid"]);
+    }
+
     /**
      * Index interface.
      *
@@ -23,8 +29,7 @@ class PointslogController extends Controller
      */
     public function index()
     {
-        $uid = $_GET["uid"];
-        echo $uid;
+
 
         return Admin::content(function (Content $content) {
 
