@@ -55,7 +55,7 @@ class WechatController extends Controller
 
                 if($result === 1){
 
-                    $exchange_result = Exchange::save(array(
+                    $exchange_result = Exchange::create(array(
                         "pid" => $prize->id,
                         "uid" => $wxuser->id,
                         "openid" => $wxuser->openid,
