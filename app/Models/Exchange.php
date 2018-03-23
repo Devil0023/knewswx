@@ -13,6 +13,6 @@ class Exchange extends Model
     protected $fillable = ["pid", "uid", "openid"];
 
     public function wxuser(){
-        return $this->belongsTo(Wxuser::class, "id", "uid");
+        return $this->hasOne(Wxuser::class, "id", "uid");
     }
 }
