@@ -121,9 +121,33 @@ class WxuserController extends Controller
         return Admin::form(Wxuser::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->display("nickname", "昵称");
+            $form->display("sex", "性别")->with(function ($sex){
+                switch($sex){
+                    case 1; $value = "男"; break;
+                    case 2: $value = "女"; break;
+                    default: $value = "不明";
+                }
+                return $value;
+            });
+
+            $form->display("language", "语言");
+            $form->display("province", "省份");
+            $form->display("city", "城市");
+            $form->display("country", "国家");
+            $form->display("headimgurl", "头像")->with(function ($img){
+                return "<img src=\".$img.\" style=\"width: 100px;\">";
+            });
+
+            $form->display("mobile", "手机");
+            $form->display("address", "地址");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
+
+            $form->disableSubmit();
+            $form->disableReset();
+
         });
     }
 }
