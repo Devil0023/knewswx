@@ -20,18 +20,25 @@ class WechatController extends Controller
         return view("usercenter.index", compact("wxuser"));
     }
 
-    public function pointstest(){
-        $wxuser = session("wxuser");
-        $wxuser = Wxuser::find($wxuser["id"])->toArray();
-//        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
-//        //var_dump($result);
-//
-//        $result = Getpoints::getPoints($wxuser["id"], -5, "兑换积分");
-//        var_dump($result);
-//
-//        $new    = Wxuser::find($wxuser["id"]);
-//        var_dump($new->points);
-        return view("usercenter.index", compact("wxuser"));
+
+    public function sign(){
+        $wxuser  = session("wxuser");
+        $wxuser  = Wxuser::find($wxuser["id"]);
+
+        $signkey = "KnewsWX-UserSign-".$wxuser->id;
+        $signchk = @Redis::get($signkey);
+        if($signchk === 1){
+            $message = array("error_code" => "400008", "error_message" => "今日已签到");
+        }else{
+
+            $length = strtotime(date("Y-m-d 23:59:59")) - time();
+            @Redis::setex($signkey, $length, 1);
+
+            Getpoints::getPointsByRule($wxuser->id, 1);
+            $message = array("error_code" => "0", "error_message" => "Success");
+        }
+
+        exit(json_encode($message));
     }
 
     public function exchange($pid){
