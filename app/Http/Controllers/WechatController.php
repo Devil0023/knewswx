@@ -12,15 +12,18 @@ use Illuminate\Support\Facades\Redis;
 class WechatController extends Controller
 {
 
-    public function index(){
-        $wxuser = session("wxuser");
-        $wxuser = Wxuser::find($wxuser["id"])->toArray();
+    private $wxuser = array();
 
-        return view("usercenter.index", compact("wxuser"));
+    public function __construct(){
+        $wxuser = session("wxuser");
+        $this->wxuser = Wxuser::find($wxuser["id"])->toArray();
+    }
+
+    public function index(){
+        return view("usercenter.index", $this->wxuser);
     }
 
     public function pointstest(){
-//        $wxuser = session("wxuser");
 //        //$result = Getpoints::getPointsByRule($wxuser["id"], $rid);
 //        //var_dump($result);
 //
@@ -29,7 +32,7 @@ class WechatController extends Controller
 //
 //        $new    = Wxuser::find($wxuser["id"]);
 //        var_dump($new->points);
-        return view("usercenter.index");
+        return view("usercenter.index", $this->wxuser);
     }
 
     public function exchange($pid){
@@ -46,10 +49,7 @@ class WechatController extends Controller
                 $message = array("error_code" => "400004", "error_message" => "奖品已被兑换完");
             }else{
 
-                $wxuser = session("wxuser");
-                $wxuser = Wxuser::find($wxuser["id"]);
-
-                $result = Getpoints::getPoints($wxuser["id"], $prize->cost, "兑换奖品：".$prize->prize);
+                $result = Getpoints::getPoints($this->wxuser["id"], $prize->cost, "兑换奖品：".$prize->prize);
 
                 if($result === 1){
                     $message = array("error_code" => "0", "error_message" => "Success");
@@ -67,13 +67,12 @@ class WechatController extends Controller
     }
 
     public function detail(){
-        $wxuser = session("wxuser");
 
-        $key    = "KnewsWX-PointsLog-".$wxuser["id"];
+        $key    = "KnewsWX-PointsLog-".$this->wxuser["id"];
         $json   = @Redis::get($key);
 
         if(empty($json)){
-            $json   = Pointslog::where("uid", $wxuser["id"])->orderBy("created_at", "desc")->take(10)->get()->toJson();
+            $json   = Pointslog::where("uid", $this->wxuser["id"])->orderBy("created_at", "desc")->take(10)->get()->toJson();
             @Redis::setex($key, 3, $json);
         }
 
@@ -83,13 +82,12 @@ class WechatController extends Controller
     }
 
     public function updateUser(Request $request){
-        $wxuser = session("wxuser");
 
         if(empty($request->address) || empty($request->mobile)){
             $message = array("error_code" => "400001", "error_message" => "存在参数为空");
         }else{
 
-            $model   = Wxuser::find($wxuser["id"]);
+            $model   = Wxuser::find($this->wxuser["id"]);
             $fillchk = $model->fill;
 
             $result  = $model->update(array(
@@ -101,7 +99,7 @@ class WechatController extends Controller
             if($result){
 
                 if(intval($fillchk) === 0){  //第一次补完数据
-                    Getpoints::getPointsByRule($wxuser["id"], 2);
+                    Getpoints::getPointsByRule($this->wxuser["id"], 2);
                 }
 
                 session(['wxuser.fill'    => 1]);
