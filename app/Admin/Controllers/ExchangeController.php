@@ -82,7 +82,7 @@ class ExchangeController extends Controller
         return Admin::grid(Exchange::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
-
+            $grid->model()->orderBy("id", "desc");
 
             if($this->pid){
                 $prize = Prize::find($this->pid);
@@ -126,9 +126,7 @@ class ExchangeController extends Controller
 
             $form->display('id', 'ID');
 
-            $form->display("uid", function ($uid){
-                return $uid;
-            });
+            $form->display("wxuser.nickname", "昵称");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

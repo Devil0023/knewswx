@@ -12,4 +12,8 @@ class Exchange extends Model
     protected $table = 'exchange';
     protected $fillable = ["pid", "uid", "openid"];
 
+    public function wxuser(){
+        return $this->belong(Wxuser::class, "id", "uid");
+    }
+
 }
