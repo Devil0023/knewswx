@@ -80,8 +80,8 @@ class PointsruleController extends Controller
                 return str_limit($text, 10, '...');
             });
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->created_at("创建时间");
+            $grid->updated_at("更新时间");
 
             $grid->model()->orderBy('id', 'desc');
             $grid->paginate(30);
@@ -116,8 +116,8 @@ class PointsruleController extends Controller
             $form->number("points", "积分");
             $form->textarea("intro", "简介");
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_at', '创建时间');
+            $form->display('updated_at', '更新时间');
         });
     }
 }

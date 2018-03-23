@@ -86,8 +86,7 @@ class WxuserController extends Controller
                 return ($fill)? "是": "否";
             });
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->created_at("创建时间");
 
             $grid->disableCreateButton();
             $grid->disableExport();
@@ -152,8 +151,7 @@ class WxuserController extends Controller
             $form->display("address", "地址");
 
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_at', '创建时间');
 
             $form->disableSubmit();
             $form->disableReset();

@@ -95,8 +95,7 @@ class PointslogController extends Controller
                 }
             }
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->created_at("创建时间");
 
             $grid->disableExport();
             $grid->disableCreateButton();
@@ -128,8 +127,7 @@ class PointslogController extends Controller
             $form->display('id', 'ID');
             $form->text("wxuser.id", "用户ID");
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_at', '创建时间');
         });
     }
 }

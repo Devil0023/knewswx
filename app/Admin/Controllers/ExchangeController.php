@@ -97,8 +97,7 @@ class ExchangeController extends Controller
             });
 
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->created_at("创建时间");
 
             $grid->disableCreateButton();
             $grid->disableExport();
@@ -147,8 +146,7 @@ class ExchangeController extends Controller
             $form->display("wxuser.mobile", "手机");
             $form->display("wxuser.address", "地址");
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_at', '创建时间');
 
             $form->disableSubmit();
             $form->disableReset();

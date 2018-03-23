@@ -128,8 +128,8 @@ class PrizeController extends Controller
             $grid->disableExport();
             $grid->perPages([30, 40, 50]);
 
-            $grid->created_at();
-            $grid->updated_at();
+            $grid->created_at("创建时间");
+            $grid->updated_at("更新时间");
 
             $grid->tools(function ($tools){
                 $tools->batch(function ($batch) {
@@ -168,8 +168,8 @@ class PrizeController extends Controller
 
             $form->textarea("intro", "奖品简介");
 
-            $form->display('created_at', 'Created At');
-            $form->display('updated_at', 'Updated At');
+            $form->display('created_at', '创建时间');
+            $form->display('updated_at', '更新时间');
         });
     }
 }
