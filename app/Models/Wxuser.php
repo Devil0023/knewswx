@@ -17,7 +17,7 @@ class Wxuser extends Model
         return $this->hasMany(Pointslog::class, "uid", "id");
     }
 
-    public function exchange(){
-        return $this->hasMany(Exchange::class, "uid", "id");
-    }
+//    public function exchange(){
+//        return $this->hasMany(Exchange::class, "uid", "id");
+//    }
 }
