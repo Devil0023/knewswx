@@ -98,7 +98,7 @@ class WxuserController extends Controller
 
             $grid->actions(function ($actions){
                 $actions->disableDelete();
-                $actions->append('<a href="'.url("admin/points/".$actions->getKey()."/log").'"><i class="fa fa-eye"></i></a>');
+                $actions->append('<a href="'.url("admin/points/uid/".$actions->getKey()."/log").'"><i class="fa fa-eye"></i></a>');
             });
 
             $grid->perPages([30, 40, 50]);
