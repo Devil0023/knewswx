@@ -90,9 +90,9 @@ class ExchangeController extends Controller
                 }
             }
 
-            $grid->wxuser("用户信息")->display(function ($wxuser){
-                return $wxuser->nickname;
-            });
+//            $grid->wxuser("用户信息")->display(function ($wxuser){
+//                return $wxuser->nickname;
+//            });
 
 
             $grid->created_at();
