@@ -10,3 +10,10 @@
     <input type="text" name="mobile" value="{{$wxuser["mobile"]}}"/>
     <button type="submit">submit</button>
 </form>
+
+<br/><br/>
+
+<form method="POST" action="/wechat/exchange/2">
+    {{csrf_field()}}
+    <button type="submit">submit</button>
+</form>

@@ -29,8 +29,7 @@ class WechatController extends Controller
 //
 //        $new    = Wxuser::find($wxuser["id"]);
 //        var_dump($new->points);
-
-
+        return view("usercenter.index");
     }
 
     public function exchange($pid){
