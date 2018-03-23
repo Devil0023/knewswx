@@ -21,9 +21,9 @@ class PointslogController extends Controller
      *
      * @return Content
      */
-    public function index(Request $request)
+    public function index()
     {
-        $uid = $request->uid;
+        $uid = $_GET["uid"];
         echo $uid;
 
         return Admin::content(function (Content $content) {
