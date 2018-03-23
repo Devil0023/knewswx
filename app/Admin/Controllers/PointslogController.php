@@ -124,7 +124,7 @@ class PointslogController extends Controller
         return Admin::form(Pointslog::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->display("uid", "用户ID");
+            $form->text("wxuser.id", "用户ID");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
