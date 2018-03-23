@@ -98,13 +98,18 @@ class WxuserController extends Controller
                 });
             });
 
+
             $grid->actions(function ($actions){
                 $actions->disableDelete();
-                $actions->append('<a href="'.url("admin/points/log?uid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
+                //$actions->append('<a href="'.url("admin/points/log?uid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
             });
 
             $grid->filter(function ($filter){
                 $filter->like("nickname", "昵称");
+            });
+
+            $grid->pointslog("积分记录")->display(function ($pointslog){
+                return "<span class='label label-warning'>".count($pointslog)."</span>";
             });
 
             $grid->perPages([30, 40, 50]);

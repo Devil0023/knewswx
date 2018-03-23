@@ -11,4 +11,8 @@ class Pointslog extends Model
 
     protected $table = 'points_log';
     protected $fillable = ["uid", "openid", "points", "desc"];
+
+    public function wxuser(){
+        return $this->belongsTo(Wxuser::class, "uid", "id");
+    }
 }

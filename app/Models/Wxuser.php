@@ -12,4 +12,8 @@ class Wxuser extends Model
     protected $table = 'wxuser';
 
     protected $fillable = ["address", "mobile", "fill", "points"];
+
+    public function pointslog(){
+        return $this->hasMany(Poingslog::class);
+    }
 }

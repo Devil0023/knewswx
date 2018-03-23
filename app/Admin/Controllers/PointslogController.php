@@ -97,10 +97,20 @@ class PointslogController extends Controller
             $grid->created_at();
             $grid->updated_at();
 
-            $grid->actions(function ($actions){
-                $actions->disableDelete();
-                $actions->disableEdit();
+            $grid->disableExport();
+
+            $grid->tools(function ($tools){
+                $tools->batch(function ($batch) {
+                    $batch->disableDelete();
+                });
             });
+
+            $grid->disableActions();
+
+//            $grid->actions(function ($actions){
+//                $actions->disableDelete();
+//                $actions->disableEdit();
+//            });
         });
     }
 
