@@ -59,7 +59,7 @@ class WechatController extends Controller
 
         if(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
             $message = array("error_code" => "400003", "error_message" => "不在奖品兑换时间内");
-        }elseif(intval($logchk) === 1{
+        }elseif(intval($logchk) === 1){
             $message = array("error_code" => "400010", "error_message" => "同一奖品在半年内不得重复兑换");
         }else{
 
