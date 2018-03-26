@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Tree;
-use App\Models\Wxuser;
+use App\Models\Wxmenu;
 
 class WxmenuController extends Controller
 {
@@ -29,7 +29,7 @@ class WxmenuController extends Controller
             $content->header('Wxmenu');
             $content->description('description');
 
-            $content->body(Wxuser::tree());
+            $content->body(Wxmenu::tree());
         });
     }
 
