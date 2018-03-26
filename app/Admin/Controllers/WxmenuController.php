@@ -10,6 +10,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
+use Encore\Admin\Tree;
 
 class WxmenuController extends Controller
 {
@@ -24,10 +25,10 @@ class WxmenuController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
+            $content->header('Wxmenu');
             $content->description('description');
 
-            $content->body($this->grid());
+            $content->body(Category::tree());
         });
     }
 
