@@ -23,4 +23,6 @@ Route::group([
 
     $router->resource('/wxuser', WxuserController::class);
 
+    $router->resource('/wxmenu', WxmenuController::class);
+
 });
