@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Tree;
-use App\Models\Wxmenu;
+
 
 class WxmenuController extends Controller
 {
