@@ -29,15 +29,15 @@ class WxmenuController extends Controller
             $content->header('Wxmenu');
             $content->description('description');
 
-            $content->body(Wxmenu::tree(function ($tree){
-                $tree->branch(function ($branch){
-                    return $branch["id"]."--".$branch["title"]."--".$branch["url"];
-                });
+            $content->body(Wxmenu::tree());
 
-                $tree->action(function ($branch){
-                    return $branch["id"];
-                });
-            }));
+//            $content->body(Wxmenu::tree(function ($tree){
+//                $tree->branch(function ($branch){
+//                    return $branch["id"]."--".$branch["title"]."--".$branch["url"];
+//
+//
+//                });
+//            }));
         });
     }
 
