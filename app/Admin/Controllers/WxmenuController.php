@@ -36,17 +36,16 @@ class WxmenuController extends Controller
                 $row->column(6, $this->treeView()->render());
 
                 $row->column(6, function (Column $column) {
-//                    $form = new \Encore\Admin\Widgets\Form();
-//                    $form->action(admin_base_path('auth/menu'));
-//
-//                    $form->select('parent_id', trans('admin.parent_id'))->options(Menu::selectOptions());
-//                    $form->text('title', trans('admin.title'))->rules('required');
-//                    $form->icon('icon', trans('admin.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
-//                    $form->text('uri', trans('admin.uri'));
-//                    $form->multipleSelect('roles', trans('admin.roles'))->options(Role::all()->pluck('name', 'id'));
-//                    $form->hidden('_token')->default(csrf_token());
-//
-//                    $column->append((new Box(trans('admin.new'), $form))->style('success'));
+                    $form = new \Encore\Admin\Widgets\Form();
+                    $form->action(admin_base_path('wxmenu'));
+
+                    $form->select('parent_id', trans('wxmenu.parent_id'))->options(Wxmenu::selectOptions());
+                    $form->text('title', trans('wxmenu.title'))->rules('required');
+                    $form->text('url', trans('wxmenu.url'));
+
+                    $form->hidden('_token')->default(csrf_token());
+
+                    $column->append((new Box(trans('wxmenu.new'), $form))->style('success'));
                 });
             });
 
