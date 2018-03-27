@@ -33,6 +33,10 @@ class WxmenuController extends Controller
             $content->header('Wxmenu');
             $content->description('description');
 
+            $content->row(function (Row $row){
+                echo "new row";
+            });
+
             $content->row(function (Row $row) {
                 $row->column(6, $this->treeView()->render());
 
