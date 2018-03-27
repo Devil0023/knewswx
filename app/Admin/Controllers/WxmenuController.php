@@ -40,9 +40,9 @@ class WxmenuController extends Controller
                     $form = new \Encore\Admin\Widgets\Form();
                     $form->action(admin_base_path('wxmenu'));
 
-                    $form->select('parent_id', trans('wxmenu.parent_id'))->options(Wxmenu::selectOptions());
-                    $form->text('title', trans('wxmenu.title'))->rules('required');
-                    $form->text('url', trans('wxmenu.url'));
+                    $form->select('parent_id', "父节点")->options(Wxmenu::selectOptions());
+                    $form->text('title', "标题")->rules('required');
+                    $form->text('url', "地址");
 
                     $form->hidden('_token')->default(csrf_token());
 
