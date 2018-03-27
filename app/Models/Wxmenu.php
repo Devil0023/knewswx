@@ -10,6 +10,7 @@ class Wxmenu extends Model
 {
     use ModelTree, AdminBuilder;
     protected $table = 'wxmenu';
+    protected $fillable = ["parent_id", "order", "title", "url"];
 
     public function __construct(array $attributes = []){
 
