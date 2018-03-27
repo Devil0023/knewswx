@@ -35,7 +35,7 @@ class WxmenuController extends Controller
 
             $content->row(function (Row $row){
                 $row->column(12, function(Column $column){
-                    $column->row('<a class="btn btn-xs btn-success fa fa-check grid-check-row"></a>');
+                    $column->row('<button type="button" class="btn btn-sm btn-default">Click</button>');
 
                 });
             });
