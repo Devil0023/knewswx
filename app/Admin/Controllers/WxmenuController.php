@@ -33,6 +33,10 @@ class WxmenuController extends Controller
                 $tree->branch(function ($branch){
                     return $branch["id"]."--".$branch["title"]."--".$branch["url"];
                 });
+
+                $tree->action(function ($branch){
+                    return $branch["id"];
+                });
             }));
         });
     }
