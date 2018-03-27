@@ -94,8 +94,8 @@ class WxmenuController extends Controller
         return Admin::form(Wxmenu::class, function (Form $form) {
 
             $form->display('id', 'ID');
-            $form->display("title", "标题");
-            $form->display("url", "地址");
+            $form->text("title", "标题");
+            $form->text("url", "地址");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
