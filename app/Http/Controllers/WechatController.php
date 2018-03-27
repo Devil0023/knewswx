@@ -57,7 +57,9 @@ class WechatController extends Controller
         $logkey = "KnewsWx-ExchangeLog-".$prize->id."-".$wxuser->id;
         $logchk = @Redis::get($logkey);
 
-        if(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
+        if(empty($wxuser->address) || empty($wxuser->mobile)){
+            $message = array("error_code" => "400011", "error_message" => "资料尚未完善");
+        }elseif(strtotime($prize->stime) > $now || strtotime($prize->etime) < $now){
             $message = array("error_code" => "400003", "error_message" => "不在奖品兑换时间内");
         }elseif(intval($logchk) === 1){
             $message = array("error_code" => "400010", "error_message" => "同一奖品在半年内不得重复兑换");
