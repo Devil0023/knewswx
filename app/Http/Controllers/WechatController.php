@@ -109,10 +109,14 @@ class WechatController extends Controller
 
         exit(json_encode($message));
     }
-
+    public function profile(){
+        $wxuser = session("wxuser");
+        $wxuser = Wxuser::find($wxuser["id"])->toArray();
+        return view("usercenter.profile", compact("wxuser"));
+    }
     public function detail(){
         $wxuser = session("wxuser");
-
+        $wxuser = Wxuser::find($wxuser["id"])->toArray();
         $key    = "KnewsWX-PointsLog-".$wxuser["id"];
         $json   = @Redis::get($key);
 
@@ -122,8 +126,9 @@ class WechatController extends Controller
         }
 
         $list   = json_decode($json, true);
-
-        var_dump($list);
+        //return view("usercenter.index", compact("list"));
+        //var_dump($list);
+        return view("usercenter.detail", compact("wxuser","list"));
     }
 
     public function updateUser(Request $request){
@@ -162,6 +167,8 @@ class WechatController extends Controller
     }
 
     public function prizelist(){
+        $wxuser = session("wxuser");
+        $wxuser = Wxuser::find($wxuser["id"])->toArray();
 
         $time = time();
         $key  = "KnewsWX-Prizelist-".date("YmdHi", $time);
@@ -178,8 +185,9 @@ class WechatController extends Controller
         $list = json_decode($json, true);
         foreach($list as $key => $val){
             $val["left"] = Redis::llen("WXPrizePoolList-".$val["id"]);
-            echo "<a href=\"/wechat/prize/detail/".$val["id"]."\">".$val["prize"]."----剩余：".$val["left"]."----</a><br/>";
+            $list[$key]=$val;
         }
+        return view("usercenter.prizeList", compact("wxuser","list"));
     }
 
     public function prize($id){
@@ -194,7 +202,6 @@ class WechatController extends Controller
 
         $prize = json_decode($json, true);
         $prize["left"] = Redis::llen("WXPrizePoolList-".$prize["id"]);
-
-        var_dump($prize);
+        return view("usercenter.prizeDetail", compact("prize"));
     }
 }
