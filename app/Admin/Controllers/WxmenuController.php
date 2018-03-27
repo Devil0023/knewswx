@@ -46,7 +46,7 @@ class WxmenuController extends Controller
 
                     $form->hidden('_token')->default(csrf_token());
 
-                    $column->append((new Box(trans('wxmenu.new'), $form))->style('success'));
+                    $column->append((new Box("创建新菜单", $form))->style('success'));
                 });
             });
 
