@@ -34,7 +34,9 @@ class WxmenuController extends Controller
             $content->description('description');
 
             $content->row(function (Row $row){
-                echo "new row";
+                $row->column(12, function(Column $column){
+                    echo "123";
+                });
             });
 
             $content->row(function (Row $row) {
