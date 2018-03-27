@@ -123,6 +123,7 @@ class WxmenuController extends Controller
             $form->display('id', 'ID');
             $form->text("title", "标题");
             $form->text("url", "地址");
+            $form->select('parent_id', "父节点")->options(Wxmenu::selectOptions());
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
