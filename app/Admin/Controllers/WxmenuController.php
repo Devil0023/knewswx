@@ -29,7 +29,23 @@ class WxmenuController extends Controller
             $content->header('Wxmenu');
             $content->description('description');
 
-            $content->body(Wxmenu::tree());
+            $content->row(function (Row $row) {
+                $row->column(6, $this->treeView()->render());
+
+                $row->column(6, function (Column $column) {
+//                    $form = new \Encore\Admin\Widgets\Form();
+//                    $form->action(admin_base_path('auth/menu'));
+//
+//                    $form->select('parent_id', trans('admin.parent_id'))->options(Menu::selectOptions());
+//                    $form->text('title', trans('admin.title'))->rules('required');
+//                    $form->icon('icon', trans('admin.icon'))->default('fa-bars')->rules('required')->help($this->iconHelp());
+//                    $form->text('uri', trans('admin.uri'));
+//                    $form->multipleSelect('roles', trans('admin.roles'))->options(Role::all()->pluck('name', 'id'));
+//                    $form->hidden('_token')->default(csrf_token());
+//
+//                    $column->append((new Box(trans('admin.new'), $form))->style('success'));
+                });
+            });
 
 //            $content->body(Wxmenu::tree(function ($tree){
 //                $tree->branch(function ($branch){
@@ -107,6 +123,25 @@ class WxmenuController extends Controller
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
+        });
+    }
+
+    protected function treeView(){
+        return Wxmenu::tree(function (Tree $tree){
+
+            $tree->disableCreate();
+
+            $tree->branch(function ($branch) {
+                $payload = "<strong>{$branch['title']}</strong>";
+
+                if (!isset($branch['children'])) {
+                    $uri = $branch["url"];
+                    $payload .= "&nbsp;&nbsp;&nbsp;<a href=\"$uri\" class=\"dd-nodrag\">$uri</a>";
+                }
+
+                return $payload;
+            });
+
         });
     }
 }
