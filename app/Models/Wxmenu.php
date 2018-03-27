@@ -10,4 +10,14 @@ class Wxmenu extends Model
 {
     use ModelTree, AdminBuilder;
     protected $table = 'wxmenu';
+
+    public function __construct(array $attributes = []){
+
+        parent::__construct($attributes);
+
+        $this->setParentColumn('parent_id');
+        $this->setOrderColumn('order');
+        $this->setTitleColumn('title');
+
+    }
 }
