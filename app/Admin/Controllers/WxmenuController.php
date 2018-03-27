@@ -76,6 +76,8 @@ class WxmenuController extends Controller
         return Admin::grid(Wxmenu::class, function (Grid $grid) {
 
             $grid->id('ID')->sortable();
+            $grid->title("标题");
+            $grid->url("地址");
 
             $grid->created_at();
             $grid->updated_at();
@@ -92,6 +94,8 @@ class WxmenuController extends Controller
         return Admin::form(Wxmenu::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->display("title", "标题");
+            $form->display("url", "地址");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
