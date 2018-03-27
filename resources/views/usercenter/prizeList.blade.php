@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="/skin/styles/public.css">
 </head>
 <body>
+	{{csrf_field()}}
 	<div class="loadingMask">
 		<div class="loadWrapper">
 			<div class="loading"></div>
@@ -31,13 +32,12 @@
 					<p class="prizeSubTitle">积分兑换</p>
 					<div class="row-flexwrapper">
 						<div class="point"><i><b>{{$val["cost"]}}</b></i>积分</div>
-						<div class="prizeState">
+						<div class="prizeState {{$val['left']==0?'soldout':''}}">
 							<span class="smallBtnGray text-center">已结束</span>
 							<span class="prizeChange smallBtnRed  text-center" data-point="{{$val["cost"]}}" data-pid="{{$val['id']}}">兑换</span>
 						</div>
 					</div>
 				</div>
-				
 			</li>
 			@endforeach
 		</ul>
@@ -65,6 +65,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script type="text/javascript" src="https://skin.kankanews.com/v6/2016zt/hz/js/jquery.js"></script>
 	<script type="text/javascript" src="/skin/scripts/public.js"></script>
 </body>

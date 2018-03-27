@@ -20,7 +20,8 @@
 				<div class="username"><b>{{$wxuser["nickname"]}}</b></div>
 			</div>
 			<div class="lineTitle"><span>完善个人资料</span></div>
-			<form>
+			<form method="post" action="/wechat/usercenter/update" onsubmit="checkInput();">
+				{{csrf_field()}}
 				<div class="smallTitle">手机号</div>
 				<div class=" form-input text-input">
 					<input class=" text-center" type="text" name="mobile" placeholder="请输入您的手机号码" maxlength="11" value="{{$wxuser['mobile']}}">
@@ -37,5 +38,16 @@
 	</div>
 	<script type="text/javascript" src="https://skin.kankanews.com/v6/2016zt/hz/js/jquery.js"></script>
 	<script type="text/javascript" src="/skin/scripts/public.js"></script>
+	<script type="text/javascript">
+		function checkInput(){
+			var mobile=$("input[name='mobile']").val(),address=$("textarea[name='address']").val();
+			if(mobile!==""&&address!==""){
+				return true;
+			}else{
+				alert("手机号和地址必填");
+				return false;
+			}
+		}
+	</script>
 </body>
 </html>
