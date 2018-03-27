@@ -13,6 +13,7 @@ use Encore\Admin\Controllers\ModelForm;
 use Encore\Admin\Tree;
 use Encore\Admin\Layout\Row;
 use Encore\Admin\Layout\Column;
+use Encore\Admin\Widgets\Box;
 
 
 
