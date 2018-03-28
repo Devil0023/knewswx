@@ -23,6 +23,7 @@ Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi
 
     //Index
     Route::get("/", "WechatController@index");
+    Route::get("/index", "WechatController@index");
 
     //奖品列表
     Route::get("/prize/list", "WechatController@prizelist");
