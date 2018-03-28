@@ -169,8 +169,12 @@ class WechatController extends Controller
                 $message = array("error_code" => "400002", "error_message" => "完善资料失败");
             }
         }
-
-        exit(json_encode($message));
+        if($message['error_code']==="0"){
+            echo "<script>alert(\"修改成功\");window.location.href=\"/wechat/usercenter/index\";</script>";
+        }else{
+            echo "<script>alert(\"".$message['error_message']."\");history.go(-1);</script>";
+        }
+        //exit(json_encode($message));
     }
 
     public function prizelist(){
