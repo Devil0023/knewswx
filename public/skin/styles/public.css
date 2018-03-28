@@ -98,4 +98,6 @@ a,a:hover,a:visited {text-decoration: none; color: inherit;}
 .changeWrapper>.flexBox>div p i{ color: #dd5525; font-size: 1.25em; }
 .changeWrapper>.flexBox>div div,.changeProfileWrapper>.flexBox>div div{ margin-top: 2em; }
 .changeProfileWrapper>.flexBox>div .smallBtnRed{ width: auto; margin:0 auto;    padding: 0 1em; }
+
+.gray{    background: #ddd; color: #999;}
 .hide{ display: none; }

@@ -60,7 +60,7 @@
 				<p>请先完善您的个人资料</p>
 				<p>我们才能准确配送礼物</p>
 				<div class="row-flexwrapper text-center">
-					<span class="smallBtnRed"><a href="profile.html">完善个人资料</a></span>
+					<span class="smallBtnRed"><a href="/wechat/usercenter/profile">完善个人资料</a></span>
 				</div>
 			</div>
 		</div>

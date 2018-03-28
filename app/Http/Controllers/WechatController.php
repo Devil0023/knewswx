@@ -20,7 +20,12 @@ class WechatController extends Controller
         return view("usercenter.index", compact("wxuser"));
     }
 
-
+    public function signpage(){
+        $wxuser = session("wxuser");
+        $wxuser = Wxuser::find($wxuser["id"])->toArray();
+        return view("usercenter.sign", compact("wxuser"));
+    }
+    
     public function sign(){
         $wxuser  = session("wxuser");
         $wxuser  = Wxuser::find($wxuser["id"]);
