@@ -150,6 +150,10 @@ class ExchangeController extends Controller
 
             $form->disableSubmit();
             $form->disableReset();
+
+            $form->tools(function (Form\Tools $tools){
+                $tools->disableListButton();
+            });
         });
     }
 }
