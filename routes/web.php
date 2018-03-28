@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect("/wechat/");
+    //return view('welcome');
 });
 
 Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi_userinfo', "knews.register"]], function () {
