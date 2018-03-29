@@ -98,7 +98,8 @@ class WechatController extends Controller
                         @Redis::setex($logkey, 50, 1);
 
                         $new     = Wxuser::find($uid);
-                        $message = array("error_code" => "0", "error_message" => "Success", "points" => $new->points);
+                        $left    = Redis::llen("WXPrizePoolList-".$pid);
+                        $message = array("error_code" => "0", "error_message" => "Success", "points" => $new->points, "left" => intval($left));
 
                     }else{
                         $message = array("error_code" => "400007", "error_message" => "兑换信息保存失败，请联系管理员");
