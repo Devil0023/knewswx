@@ -117,16 +117,16 @@ class WechatController extends Controller
 
         exit(json_encode($message));
     }
+
     public function profile(){
         $wxuser = session("wxuser");
         $wxuser = Wxuser::find($wxuser["id"])->toArray();
 
-        $previous = URL::previous();
-
-        echo $previous;
+        session(['wxuser.profileprivious' => URL::previous()]);
 
         return view("usercenter.profile", compact("wxuser"));
     }
+
     public function detail(){
         $wxuser = session("wxuser");
         $wxuser = Wxuser::find($wxuser["id"])->toArray();
@@ -175,8 +175,10 @@ class WechatController extends Controller
                 $message = array("error_code" => "400002", "error_message" => "完善资料失败");
             }
         }
+
         if($message['error_code']==="0"){
-            echo "<script>alert(\"修改成功\");window.location.href=\"/wechat/usercenter/index\";</script>";
+            $previous = isset($wxuser["profileprivious"]) && !empty($wxuser["profileprivious"])? $wxuser["profileprivious"]: "/wechat/usercenter/index";
+            echo "<script>alert(\"修改成功\");window.location.href=\"$previous\";</script>";
         }else{
             echo "<script>alert(\"".$message['error_message']."\");history.go(-1);</script>";
         }
