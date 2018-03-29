@@ -47,7 +47,7 @@ class WechatController extends Controller
                 @Redis::setex($signkey, $length, 1);
 
                 $new     = Wxuser::find($uid);
-                $message = array("error_code" => "0", "error_message" => "Success", "points" => $new->points);
+                $message = array("error_code" => "0", "error_message" => "Success", "points" => "New：".$new->points);
 
             }else{
                 $message = array("error_code" => "400009", "error_message" => "签到失败");
