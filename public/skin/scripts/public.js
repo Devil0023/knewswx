@@ -17,6 +17,7 @@ $(document).ready(function() {
 				var error_code=parseInt(res.error_code)
 				if(error_code===0){
 					alert("兑换成功")
+					alert("v1"+res.points);
 					totalpointsDiv.html(res.points)
 					lastnum -= 1
 					if(lastnum===0){

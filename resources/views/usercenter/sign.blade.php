@@ -47,7 +47,9 @@
 					}
 					if(error_code===0){
 						alert("签到成功");
-						bigPoint.html(res.points);
+						//alert("v1"+res.points);
+
+						$(".bigPoint b").html(res.points);
 						$(".sign").addClass("gray")
 						//window.location.href="/wechat/usercenter/index";
 					}else{
