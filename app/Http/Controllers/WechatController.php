@@ -119,6 +119,11 @@ class WechatController extends Controller
     public function profile(){
         $wxuser = session("wxuser");
         $wxuser = Wxuser::find($wxuser["id"])->toArray();
+
+        $previous = URL::previous();
+
+        echo $previous;
+
         return view("usercenter.profile", compact("wxuser"));
     }
     public function detail(){
