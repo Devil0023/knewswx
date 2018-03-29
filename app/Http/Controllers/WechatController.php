@@ -83,8 +83,6 @@ class WechatController extends Controller
                 $message = array("error_code" => "400004", "error_message" => "奖品已被兑换完");
             }else{
 
-
-
                 $result = Getpoints::getPoints($wxuser["id"], (0 - $prize->cost), "兑换奖品：".$prize->prize);
 
                 if($result === 1){
@@ -113,10 +111,10 @@ class WechatController extends Controller
                     $message = array("error_code" => "400006", "error_message" => "兑换失败");
                 }
 
-            }
+                if($message["error_code"] !== "0"){
+                    @Redis::lpush("WXPrizePoolList-".$pid, 1);
+                }
 
-            if($message["error_code"] !== "0"){
-                @Redis::lpush("WXPrizePoolList-".$pid, 1);
             }
 
         }
