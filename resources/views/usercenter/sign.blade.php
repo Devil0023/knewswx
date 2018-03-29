@@ -46,7 +46,8 @@
 						$(".sign").addClass("gray")
 					}
 					if(error_code===0){
-						alert("签到成功")
+						alert("签到成功");
+						window.location.href="/wechat/usercenter/index";
 					}else{
 						alert(res.error_message)
 					}

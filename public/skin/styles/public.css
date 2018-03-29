@@ -1,4 +1,5 @@
 @charset "utf-8";
+*{ padding:0px; margin:0px; border: none;-webkit-appearance:none;-webkit-tap-highlight-color:transparent; }
 body,html{min-height:100%;-webkit-text-size-adjust: none;-moz-text-size-adjust:none; -ms-text-size-adjust: none;text-size-adjust: none}
 a,body,div,h3,li,p,ul, article, section, div ,h1{padding:0;margin:0;word-wrap:break-word;list-style:none;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-tap-highlight-color:transparent; font-weight:normal;}
 body{font: 16px/1 "微软雅黑",Helvetica;background:url(../images/bkg.jpg) no-repeat; background-size: 100% 100%; color:#363636; width: 100%; margin: 0 auto;}
