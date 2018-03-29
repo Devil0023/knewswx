@@ -47,7 +47,11 @@
 					}
 					if(error_code===0){
 						alert("签到成功");
-						window.location.href="/wechat/usercenter/index";
+						var bigPoint=$(".bigPoint b");
+						var tmpPoint=parseInt(bigPoint.html());
+						tmpPoint.html(tmpPoint+2);
+						$(".sign").addClass("gray")
+						//window.location.href="/wechat/usercenter/index";
 					}else{
 						alert(res.error_message)
 					}

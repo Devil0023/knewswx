@@ -5,7 +5,8 @@ $(document).ready(function() {
 	}
 	$(".loadingMask").addClass("hide");
 	$(".prizeChange").bind("click",function() {
-		var pid=$(this).data("pid"),point=parseInt($(this).data("point"));
+		var _=$(this);
+		var pid=_.data("pid"),point=parseInt(_.data("point")),cautionNum=_.parent().parent().parent().parent().find(".caution i"),lastnum=parseInt(cautionNum.html());
 		$(".changeWrapper>.flexBox>div p i").html(point);
 		$(".changeWrapper").removeClass("hide");
 		$(".changeForSure").bind("click",function() {
@@ -17,6 +18,12 @@ $(document).ready(function() {
 				if(error_code===0){
 					alert("兑换成功")
 					totalpointsDiv.html(totalpoints-point)
+					lastnum -= 1
+					if(lastnum===0){
+						_.parent(".prizeState").addClass("soldout")
+					}
+					cautionNum.html(lastnum)
+
 					$(this).unbind("click")
 					$(".changeForSure").unbind("click");
 					$(".changeWrapper").addClass("hide");
