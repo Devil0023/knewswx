@@ -9,6 +9,7 @@ use App\Models\Wxuser;
 use App\Models\Pointslog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Http\URL;
 
 class WechatController extends Controller
 {
