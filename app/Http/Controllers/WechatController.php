@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exchange;
 use App\Models\Getpoints;
 use App\Models\Prize;
+use App\Models\Wxmenu;
 use App\Models\Wxuser;
 use App\Models\Pointslog;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class WechatController extends Controller
     
     public function sign(){
         $wxuser  = session("wxuser");
-        $wxuser  = Wxuser::find($wxuser["id"]);
+        $uid     = $wxuser["id"];
+        $wxuser  = Wxuser::find($uid);
 
         $signkey = "KnewsWX-UserSign-".$wxuser->id;
         $signchk = @Redis::get($signkey);
@@ -43,7 +45,10 @@ class WechatController extends Controller
             if($result){
                 $length = strtotime(date("Y-m-d 23:59:59")) - time();
                 @Redis::setex($signkey, $length, 1);
-                $message = array("error_code" => "0", "error_message" => "Success");
+
+                $new     = Wxuser::find($uid);
+                $message = array("error_code" => "0", "error_message" => "Success", "points" => $new->points);
+
             }else{
                 $message = array("error_code" => "400009", "error_message" => "签到失败");
             }
@@ -58,7 +63,8 @@ class WechatController extends Controller
         $prize  = Prize::find($pid);
         $now    = time();
         $wxuser = session("wxuser");
-        $wxuser = Wxuser::find($wxuser["id"]);
+        $uid    = $wxuser["id"];
+        $wxuser = Wxuser::find($uid);
 
         $logkey = "KnewsWx-ExchangeLog-".$prize->id."-".$wxuser->id;
         $logchk = @Redis::get($logkey);
@@ -93,7 +99,9 @@ class WechatController extends Controller
 
                         @Redis::setex($logkey, 50, 1);
 
-                        $message = array("error_code" => "0", "error_message" => "Success");
+                        $new     = Wxuser::find($uid);
+                        $message = array("error_code" => "0", "error_message" => "Success", "points" => $new->points);
+
                     }else{
                         $message = array("error_code" => "400007", "error_message" => "兑换信息保存失败，请联系管理员");
                     }
