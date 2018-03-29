@@ -101,7 +101,8 @@ class PrizeController extends Controller
     {
         return Admin::grid(Prize::class, function (Grid $grid) {
 
-            //$grid->id('ID')->sortable();
+            $grid->id('ID')->sortable();
+
             $grid->prize("奖品名称");
 
             $grid->img("奖品图片")->display(function ($img){
@@ -119,10 +120,15 @@ class PrizeController extends Controller
 
             $grid->num("奖品数量");
 
-            $grid->column("id", "剩余")->display(function ($id){
-                $left = Redis::llen("WXPrizePoolList-".$id);
-                return $left;
+            $grid->column("剩余")->display(function (){
+                $left = Redis::llen("WXPrizePoolList-".$this->id);
+                return intval($left);
             });
+
+//            $grid->column("id", "剩余")->display(function ($id){
+//                $left = Redis::llen("WXPrizePoolList-".$id);
+//                return $left;
+//            });
 
 
             $grid->model()->orderBy('id', 'desc');
