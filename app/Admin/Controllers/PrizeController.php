@@ -11,6 +11,8 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\URL;
+
 
 class PrizeController extends Controller
 {
@@ -87,7 +89,7 @@ class PrizeController extends Controller
         }
 
 
-        return redirect("/admin/prize");
+        return redirect(URL::previous());
     }
 
     /**
