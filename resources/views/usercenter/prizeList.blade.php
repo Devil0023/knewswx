@@ -5,6 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>积分兑换</title>
 	<link rel="stylesheet" type="text/css" href="/skin/styles/public.css">
+	<style type="text/css">
+		.caution-text{ background: #ffffb2;font-size: 0.9em;line-height: 1.5;padding: .5em 1em;margin-right: 1.5em;border-bottom: 1px solid #f8b551;}
+	</style>
 </head>
 <body>
 	{{csrf_field()}}
@@ -21,6 +24,7 @@
 			<div class="mallPoint"><i><b>{{$wxuser["points"]}}</b></i>分</div>
 		</div>
 		<div class="smallTitle lineTitle text-left"><span>积分兑换</span></div>
+		<div class="caution-text">请务必确认地址填写正确，若因地址有误造成的奖品遗失概不负责，积分不退不补。</div>
 		<ul class="prizeList">
 			@foreach ($list as $val)
 			<li>

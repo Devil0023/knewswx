@@ -53,7 +53,8 @@
 						$(".sign").addClass("gray")
 						//window.location.href="/wechat/usercenter/index";
 					}else{
-						alert(res.error_message)
+						alert("签到失败")
+						//alert(res.error_message)
 					}
 				},function(e){
 					alert("签到失败")
