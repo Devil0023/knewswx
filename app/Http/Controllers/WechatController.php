@@ -95,7 +95,7 @@ class WechatController extends Controller
 
                     if($exchange_result){
 
-                        @Redis::setex($logkey, 50, 1);
+                        @Redis::setex($logkey, 15552000, 1);
 
                         $new     = Wxuser::find($uid);
                         $left    = Redis::llen("WXPrizePoolList-".$pid);
