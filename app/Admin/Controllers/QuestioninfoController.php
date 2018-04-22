@@ -159,14 +159,9 @@ class QuestioninfoController extends Controller
     {
         return Admin::form(Questioninfo::class, function (Form $form) {
 
-//            $qorder = array();
-//            for($i = 1; $i <= 100; $i++){
-//                $qorder[$i] = $i;
-//            }
-
-            $qorder = $this->xrange(1, 100, 1);
-            foreach($qorder as $key => $val){
-                echo $key."---".$val;
+            $qorder = array();
+            for($i = 1; $i <= 100; $i++){
+                $qorder[$i] = $i;
             }
 
             $form->display('id', 'ID');
@@ -175,7 +170,7 @@ class QuestioninfoController extends Controller
             $form->radio("type", "类型")->options([0 => "单选", 1 => "多选", 2 => "开放"])->default(0);
             $form->radio("isrequired", "必填")->options([0 => "否", 1 => "是"])->default(0);
             $form->textarea("options", "选项(换行区分，'其他'为else)");
-            $form->select("qorder", "题目顺序")->options()->default(1);
+            $form->select("qorder", "题目顺序")->options($qorder)->default(1);
 
             $form->hidden("qid")->value($this->qid);
 
@@ -184,9 +179,4 @@ class QuestioninfoController extends Controller
         });
     }
 
-    private function xrange($start, $end, $step = 1) {
-        for ($i = $start; $i <= $end; $i += $step) {
-            yield $i => $i;
-        }
-    }
 }
