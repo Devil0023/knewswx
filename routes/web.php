@@ -16,6 +16,12 @@ Route::get('/', function () {
     //return view('welcome');
 });
 
+Route::group(["prefix" => "survey", 'middleware' => ['web']], function(){
+
+    Route::get("/questionnaire/{id}", "QuestionnaireController@index");
+
+});
+
 Route::group(["prefix" => "wechat", 'middleware' => ['web', 'wechat.oauth:snsapi_userinfo', "knews.register"]], function () {
 //    Route::get('/user', function () {
 //        $user = session('wechat.oauth_user'); // 拿到授权用户资料
