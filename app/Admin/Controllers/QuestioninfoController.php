@@ -164,13 +164,18 @@ class QuestioninfoController extends Controller
 //                $qorder[$i] = $i;
 //            }
 
+            $qorder = $this->xrange(1, 100, 1);
+            foreach($qorder as $key => $val){
+                echo $key."---".$val;
+            }
+
             $form->display('id', 'ID');
 
             $form->text("question", "问题");
             $form->radio("type", "类型")->options([0 => "单选", 1 => "多选", 2 => "开放"])->default(0);
             $form->radio("isrequired", "必填")->options([0 => "否", 1 => "是"])->default(0);
             $form->textarea("options", "选项(换行区分，'其他'为else)");
-            $form->select("qorder", "题目顺序")->options($this->xrange(1, 100, 1))->default(1);
+            $form->select("qorder", "题目顺序")->options()->default(1);
 
             $form->hidden("qid")->value($this->qid);
 
