@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Questioninfo;
 use App\Models\Questionnaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class QuestionnaireController extends Controller
 {
@@ -15,15 +16,21 @@ class QuestionnaireController extends Controller
             header("HTTP/1.1 404 Not Found"); die;
         }
 
-        echo $questionnaire->id;
+        $qkey = "Questionnaire-".$questionnaire->id;
+        $data = @Redis::get($qkey);
 
-        $questions = Questioninfo::where("qid", $questionnaire->id)
-            ->where("deleted_at", null)
-            ->orderBy("qorder", "asc")->get();
+        if(!is_array($data)){
 
-        foreach($questions as $key => $val){
-            var_dump($val->question);
+            $questions = Questioninfo::where("qid", $questionnaire->id)
+                ->where("deleted_at", null)
+                ->orderBy("qorder", "asc")->toArray();
+
+            var_dump($questions);
         }
+
+
+
+
 
 
     }
