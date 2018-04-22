@@ -25,4 +25,6 @@ Route::group([
 
     $router->resource('/wxmenu', WxmenuController::class);
 
+    $router->resource('/questionnaire', QuestionnaireController::class);
+
 });
