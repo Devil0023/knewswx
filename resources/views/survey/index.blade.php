@@ -25,24 +25,47 @@
     <form id="form">
     <?php
     foreach($questions as $question){
-        $type = "开放题";
-        $area = "<textarea></textarea>";
 
-        $options = array_filter(explode(PHP_EOL, $question["options"]));
-
-        print_r($options);
+        $area = "";
 
         switch($question["type"]){
             case 0:
-                $type = "单选题";
+                $type    = "单选题";
+                $options = array_filter(explode(PHP_EOL, $question["options"]));
+
+                $area    = "<ul class=\"radio\">";
+
+                foreach($options as $option){
+                    $area .= "<li data-val=\"".$option."\"><span></span>".$option."</li>";
+                }
+
+                $area .= "</ul>".
+                         "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required/>";
 
                 break;
+
             case 1:
-                $type = "多选题";
+                $type    = "多选题";
+                $options = array_filter(explode(PHP_EOL, $question["options"]));
+                $area    = "<ul class=\"check\">";
+
+                foreach($options as $option){
+                    if($option === "else"){
+                        $area .= "<li><span></span>其他（请说明）<input class=\"smTxt\" name=\"Question_".$question["qorder"]."\" type=\"text\" value=\"\" />".
+                                 "<input class=\"votebox\" value=\"else\" name=\"Question_".$question["qorder"]."\" style=\"display:none\" type=\"checkbox\"></li>";
+                    }else{
+                        $area .= "<li><span></span>".$option."<input class=\"votebox\" value=\"".$option.
+                                 "\" name=\"Question_".$question["qorder"]."\" style=\"display:none\" type=\"checkbox\"></li>";
+                    }
+
+                }
+
+                $area .= "</ul>";
 
                 break;
             case 2:
                 $type = "开放题";
+                $area = "<textarea name=\"Question_".$question["qorder"]."\"></textarea>";
 
                 break;
         }
@@ -54,12 +77,9 @@
                 {{$question["qorder"]}}. {{$question["question"]}} [{{$type}}]
                 {!! intval($question["isrequired"]) === 1? "<em>*</em>": "" !!}
             </p>
-            <ul class="radio">
-                <li data-val="nan"><span></span>男</li>
-                <li data-val="nv"><span></span>女</li>
-            </ul>
-            <input type="hidden" name="sex" value="nan" required/>
+            {!! $area !!}
         </div>
+
     <?php
     }
     ?>
