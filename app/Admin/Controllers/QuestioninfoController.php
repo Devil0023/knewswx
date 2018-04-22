@@ -43,8 +43,12 @@ class QuestioninfoController extends Controller
      * @param $id
      * @return Content
      */
-    public function edit($id)
+    //public function edit($id)
+    public function edit(Request $request)
     {
+        //$pid = $request->pid;
+        $id  = $request->id;
+
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('问卷设计');
