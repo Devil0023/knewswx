@@ -41,8 +41,8 @@ class QuestionnaireController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('问卷调查');
+            $content->description('问卷编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class QuestionnaireController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('问卷调查');
+            $content->description('创建问卷');
 
             $content->body($this->form());
         });

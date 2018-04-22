@@ -47,8 +47,8 @@ class QuestioninfoController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('问卷设计');
+            $content->description('问题编辑');
 
             $content->body($this->form()->edit($id));
         });
@@ -63,8 +63,8 @@ class QuestioninfoController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('问卷设计');
+            $content->description('问题创建');
 
             $content->body($this->form());
         });
