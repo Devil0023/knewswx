@@ -91,7 +91,7 @@ class QuestioninfoController extends Controller
             $result["message"] = "Delete succeeded !";
         }
 
-        return json_encode($result);
+        return $result;
     }
 
     /**
