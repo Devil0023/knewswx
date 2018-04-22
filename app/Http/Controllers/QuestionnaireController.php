@@ -17,21 +17,20 @@ class QuestionnaireController extends Controller
         }
 
         $qkey = "Questionnaire-".$questionnaire->id;
-        $data = @Redis::get($qkey);
+        $json = @Redis::get($qkey);
 
-        if(!is_array($data)){
+        if(empty($json)){
 
-            $questions = Questioninfo::where("qid", $questionnaire->id)
+            $json = Questioninfo::where("qid", $questionnaire->id)
                 ->where("deleted_at", null)
-                ->orderBy("qorder", "asc")->get()->toArray();
+                ->orderBy("qorder", "asc")->get()->toJson();
 
-            var_dump($questions);
+            @Redis::setex($qkey, 300, $json);
         }
 
+        $questions = json_decode($json, true);
 
-
-
-
+        return view("survey.index", compact("questionnaire","questions"));
 
     }
 }
