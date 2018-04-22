@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(["prefix" => "survey", 'middleware' => ['web']], function(){
 
     Route::get("/questionnaire/{id}", "QuestionnaireController@index");
+    Route::post("/questionnaire/{id}/submit", "QuestionnaireController@submit");
 
 });
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script src="http://skin.kankanews.com/zt/2017/20170817/js/flexible.js"></script>
     <title>{{$questionnaire["title"]}}</title>
     <link href="" type="text/css" rel="stylesheet" />
@@ -155,8 +156,13 @@
             $.ajax({
                 cache: true,
                 type: "POST",
-                url:"****.php",
+                url:"/survey/questionnaire/{{$questionnaire->id}}/submit",
+
                 data:$("#form").serialize(),
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+
                 async: false,
                 error: function(request) {
                     $(".mask").show();

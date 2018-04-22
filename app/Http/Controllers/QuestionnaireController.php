@@ -33,4 +33,8 @@ class QuestionnaireController extends Controller
         return view("survey.index", compact("questionnaire","questions"));
 
     }
+
+    public function submit(Request $request){
+        var_dump($request);
+    }
 }
