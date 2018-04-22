@@ -15,8 +15,16 @@ class QuestionnaireController extends Controller
             header("HTTP/1.1 404 Not Found"); die;
         }
 
-        $questions = Questioninfo::where("qid", $questionnaire->id)->orderBy("qorder", "asc");
+        echo $questionnaire->id;
 
-        var_dump(count($questions));
+        $questions = Questioninfo::where("qid", $questionnaire->id)
+            ->where("deleted_at", null)
+            ->orderBy("qorder", "asc");
+
+        foreach($questions as $key => $val){
+            var_dump($val->question);
+        }
+
+        
     }
 }
