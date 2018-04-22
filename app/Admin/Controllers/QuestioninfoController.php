@@ -75,8 +75,20 @@ class QuestioninfoController extends Controller
 
     public function update(Request $request){
 
-        $id = $request->questioninfo;
-        echo "update:".$id;
+        $id     = $request->questioninfo;
+        $result = Questioninfo::find($id)->update(array(
+            "question" => $request->question,
+            "type" => $request->type,
+            "isrequired" => $request->isrequired,
+            "options" => $request->options,
+            "qorder" => $request->qorder,
+        ));
+
+        if($result){
+            return array("status" => true, "message" => "Update succeeded!");
+        }else{
+            return array("status" => false, "message" => "Update failed!");
+        }
 
     }
 
