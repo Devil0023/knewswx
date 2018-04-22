@@ -10,4 +10,6 @@ class Questioninfo extends Model
     use SoftDeletes;
 
     protected $table = 'questioninfo';
+
+    protected $fillable = ["question", "type", "isrequired", "options", "qorder", "qid"];
 }
