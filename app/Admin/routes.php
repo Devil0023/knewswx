@@ -27,6 +27,6 @@ Route::group([
 
     $router->resource('/questionnaire', QuestionnaireController::class);
 
-    $router->resource("/questioninfo", QuestioninfoController::class);
+    $router->resource("/questionnaire/{qid}/questioninfo", QuestioninfoController::class);
 
 });

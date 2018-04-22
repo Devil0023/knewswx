@@ -103,8 +103,13 @@ class QuestioninfoController extends Controller
                 return $isrequired? "是": "否";
             });
 
+
+
             $grid->created_at();
             $grid->updated_at();
+
+
+
         });
     }
 
@@ -122,7 +127,7 @@ class QuestioninfoController extends Controller
             $form->text("question", "问题");
             $form->radio("type", "类型")->options([0 => "单选", 1 => "多选", 2 => "开放"])->default(0);
             $form->radio("isrequired", "必填")->options([0 => "否", 1 => "是"])->default(0);
-            $form->textarea("options", "选项(换行区分，'其他'为else)");
+            $form->textarea("options", "选项<br/>(换行区分，'其他'为else)");
             $form->select("qorder", "题目顺序")->options([
                 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5,
                 6 => 6, 7 => 7, 8 => 8, 9 => 9, 10 => 10,
