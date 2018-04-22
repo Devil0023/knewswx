@@ -28,10 +28,23 @@
         $type = "开放题";
         $area = "<textarea></textarea>";
 
+        $options = array_filter(explode(PHP_EOL, $question["options"]));
+
+        print_r($options);
+
         switch($question["type"]){
-            case 0: $type = "单选题"; break;
-            case 1: $type = "多选题"; break;
-            case 2: $type = "开放题"; break;
+            case 0:
+                $type = "单选题";
+
+                break;
+            case 1:
+                $type = "多选题";
+
+                break;
+            case 2:
+                $type = "开放题";
+
+                break;
         }
 
     ?>
@@ -39,7 +52,7 @@
         <div class="tm">
             <p>
                 {{$question["qorder"]}}. {{$question["question"]}} [{{$type}}]
-                {{ intval($question["isrequired"]) === 1? "<em>*</em>": "" }}
+                {!! intval($question["isrequired"]) === 1? "<em>*</em>": "" !!}
             </p>
             <ul class="radio">
                 <li data-val="nan"><span></span>男</li>
