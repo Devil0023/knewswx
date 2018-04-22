@@ -75,6 +75,11 @@ class QuestionnaireController extends Controller
 
             $grid->id('ID')->sortable();
 
+            $grid->title("问卷名称");
+            $grid->intro("问卷简介");
+
+            $grid->model()->orderBy('id', 'desc');
+
             $grid->created_at();
             $grid->updated_at();
         });
@@ -90,6 +95,8 @@ class QuestionnaireController extends Controller
         return Admin::form(Questionnaire::class, function (Form $form) {
 
             $form->display('id', 'ID');
+            $form->text("title", "问卷名称");
+            $form->text("intro", "问卷简介");
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
