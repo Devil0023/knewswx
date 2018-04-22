@@ -84,7 +84,7 @@
     <?php
     }
     ?>
-
+    <input type="hidden" name="qid" value="{{$questionnaire->id}}">
     </form>
     <div class="btn"><input type="button" class="sBtn" value="提 交" id="submit" /></div>
 </div>

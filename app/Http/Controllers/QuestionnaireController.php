@@ -35,6 +35,6 @@ class QuestionnaireController extends Controller
     }
 
     public function submit(Request $request){
-        var_dump($request);
+        var_dump($request->qid);
     }
 }
