@@ -16,25 +16,36 @@ class QuestionnaireController extends Controller
             header("HTTP/1.1 404 Not Found"); die;
         }
 
-        $qkey = "Questionnaire-".$questionnaire->id;
-        $json = @Redis::get($qkey);
-
-        if(empty($json)){
-
-            $json = Questioninfo::where("qid", $questionnaire->id)
-                ->where("deleted_at", null)
-                ->orderBy("qorder", "asc")->get()->toJson();
-
-            @Redis::setex($qkey, 300, $json);
-        }
-
-        $questions = json_decode($json, true);
+        $questions = $this->getQuestions($questionnaire->id);
 
         return view("survey.index", compact("questionnaire","questions"));
 
     }
 
     public function submit(Request $request){
-        var_dump($request->qid);
+        $questionnaire = Questionnaire::find($request->id);
+        if(!@$questionnaire->id){
+            header("HTTP/1.1 404 Not Found"); die;
+        }
+
+        $questions = $this->getQuestions($questionnaire->id);
+
+        echo count($questions);
+    }
+
+    private function getQuestions($qid){
+        $qkey = "Questionnaire-".$qid;
+        $json = @Redis::get($qkey);
+
+        if(empty($json)){
+
+            $json = Questioninfo::where("qid", $qid)
+                ->where("deleted_at", null)
+                ->orderBy("qorder", "asc")->get()->toJson();
+
+            @Redis::setex($qkey, 300, $json);
+        }
+
+        return json_decode($json, true);
     }
 }
