@@ -30,7 +30,11 @@ class QuestionnaireController extends Controller
 
         $questions = $this->getQuestions($questionnaire->id);
 
-        echo count($questions);
+        $count     = count($questions);
+
+        for($i = 1; $i <= $count; $i++){
+            var_dump($request->Question_.$i);
+        }
     }
 
     private function getQuestions($qid){
