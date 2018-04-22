@@ -19,12 +19,12 @@ class QuestionnaireController extends Controller
 
         $questions = Questioninfo::where("qid", $questionnaire->id)
             ->where("deleted_at", null)
-            ->orderBy("qorder", "asc");
+            ->orderBy("qorder", "asc")->get();
 
         foreach($questions as $key => $val){
             var_dump($val->question);
         }
 
-        
+
     }
 }
