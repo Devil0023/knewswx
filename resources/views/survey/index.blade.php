@@ -52,11 +52,11 @@
 
                 foreach($options as $option){
                     if($option === "else"){
-                        $area .= "<li><span></span>其他（请说明）<input class=\"smTxt\" name=\"Question_".$question["qorder"]."\" type=\"text\" value=\"\" />".
-                                 "<input class=\"votebox\" value=\"else\" name=\"Question_".$question["qorder"]."\" style=\"display:none\" type=\"checkbox\"></li>";
+                        $area .= "<li><span></span>其他（请说明）<input class=\"smTxt\" name=\"Question_".$question["qorder"]."[]\" type=\"text\" value=\"\" />".
+                                 "<input class=\"votebox\" value=\"else\" name=\"Question_".$question["qorder"]."[]\" style=\"display:none\" type=\"checkbox\"></li>";
                     }else{
                         $area .= "<li><span></span>".$option."<input class=\"votebox\" value=\"".$option.
-                                 "\" name=\"Question_".$question["qorder"]."\" style=\"display:none\" type=\"checkbox\"></li>";
+                                 "\" name=\"Question_".$question["qorder"]."[]\" style=\"display:none\" type=\"checkbox\"></li>";
                     }
 
                 }
