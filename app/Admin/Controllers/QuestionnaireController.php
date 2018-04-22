@@ -88,7 +88,7 @@ class QuestionnaireController extends Controller
 
             $grid->actions(function ($actions){
                 // append一个操作
-                $actions->append('<a href="'.url("admin/questionnaire/'.$actions->getKey().'/questioninfo").'"><i class="fa fa-eye"></i></a>');
+                $actions->append('<a href="'.url("admin/questionnaire/".$actions->getKey()."/questioninfo").'"><i class="fa fa-eye"></i></a>');
 
             });
         });
