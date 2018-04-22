@@ -24,8 +24,8 @@ class QuestionnaireController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('问卷调查');
+            $content->description('添加问卷');
 
             $content->body($this->grid());
         });
