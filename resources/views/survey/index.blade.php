@@ -84,52 +84,6 @@
     }
     ?>
 
-        <div class="tm">
-            <p>1. 你的性别？ [单选题]<em>*</em></p>
-            <ul class="radio">
-                <li data-val="nan"><span></span>男</li>
-                <li data-val="nv"><span></span>女</li>
-            </ul>
-            <input type="hidden" name="sex" value="nan" required/>
-        </div>
-        <div class="tm">
-            <p>2. 你的年龄段？ [单选题]<em>*</em></p>
-            <ul class="radio">
-                <li data-val="1"><span></span>22-28</li>
-                <li data-val="2"><span></span>29-35</li>
-                <li data-val="3"><span></span>36-40</li>
-                <li data-val="4"><span></span>41-50</li>
-                <li data-val="5"><span></span>51-60</li>
-            </ul>
-            <input type="hidden" name="age" value="nan" required/>
-        </div>
-        <div class="tm">
-            <p>6. 你为自己设立的职业目标是？ [多选题]</p>
-            <ul class="check">
-                <li><span></span>能独当一面，独立负责一部分工作<input class="votebox" value="1" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>能拥有自己的团队，全盘负责，带领团队完成工作<input class="votebox" value="2" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>能在职级上有所晋升<input class="votebox" value="3" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>能在专业领域有显著提升<input class="votebox" value="4" name="mb" style="display:none" type="checkbox"></li>
-            </ul>
-        </div>
-        <div class="tm">
-            <p>7. 除薪酬外，你最看重什么？ [多选题]</p>
-            <ul class="check">
-                <li><span></span>提高自己能力的机会和舞台<input class="votebox" value="1" name="xc" style="display:none" type="checkbox"></li>
-                <li><span></span>良好的办公环境<input class="votebox" value="2" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>和谐的人际关系<input class="votebox" value="3" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>工作中的认同感<input class="votebox" value="4" name="mb" style="display:none" type="checkbox"></li>
-                <li><span></span>其他（请说明）<input class="smTxt" name="" type="text" value="" /><input class="votebox" value="5" name="mb" style="display:none" type="checkbox"></li>
-            </ul>
-        </div>
-        <div class="tm">
-            <p>你对深度融合与整体转型的意见和建议。</p>
-            <textarea></textarea>
-        </div>
-        <div class="tm">
-            <p>你认为目前迅速提升看看新闻影响力最有效又切实可行的办法是什么？</p>
-            <textarea></textarea>
-        </div>
     </form>
     <div class="btn"><input type="button" class="sBtn" value="提 交" id="submit" /></div>
 </div>
