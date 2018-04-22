@@ -85,6 +85,12 @@ class QuestionnaireController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->actions(function ($actions){
+                // append一个操作
+                $actions->append('<a href="'.url("admin/questioninfo?qid=".$actions->getKey()).'"><i class="fa fa-eye"></i></a>');
+
+            });
         });
     }
 
