@@ -37,7 +37,10 @@
     ?>
 
         <div class="tm">
-            <p>{{$question->qorder}}. {{$question->question}} [{{$type}}] {{intval($question->isrequired) === 1? "<em>*</em>": "";}}</p>
+            <p>
+                {{$question->qorder}}. {{$question->question}} [{{$type}}]
+                {{ intval($question->isrequired) === 1? "<em>*</em>": "" }}
+            </p>
             <ul class="radio">
                 <li data-val="nan"><span></span>男</li>
                 <li data-val="nv"><span></span>女</li>
