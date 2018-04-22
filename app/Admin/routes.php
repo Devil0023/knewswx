@@ -27,4 +27,6 @@ Route::group([
 
     $router->resource('/questionnaire', QuestionnaireController::class);
 
+    $router->resource("/questioninfo", ExchangeController::class);
+
 });
