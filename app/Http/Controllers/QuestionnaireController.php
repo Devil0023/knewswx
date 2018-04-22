@@ -33,7 +33,8 @@ class QuestionnaireController extends Controller
         $count     = count($questions);
 
         for($i = 1; $i <= $count; $i++){
-            var_dump($request->Question_.$i);
+            $var_name = "Question_".$i;
+            var_dump($request->$var_name);
         }
     }
 
