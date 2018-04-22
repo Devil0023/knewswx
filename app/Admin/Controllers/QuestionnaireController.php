@@ -77,6 +77,9 @@ class QuestionnaireController extends Controller
 
             $grid->title("问卷名称");
             $grid->intro("问卷简介");
+            $grid->checked("发布")->display(function ($checked) {
+                return $checked ? '是' : '否';
+            });
 
             $grid->model()->orderBy('id', 'desc');
 
@@ -97,6 +100,7 @@ class QuestionnaireController extends Controller
             $form->display('id', 'ID');
             $form->text("title", "问卷名称");
             $form->text("intro", "问卷简介");
+            $form->radio("checked", "发布")->options([0 => "否", 1 => "是"])->default(0);
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
