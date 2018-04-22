@@ -76,7 +76,7 @@ class QuestioninfoController extends Controller
     public function update(Request $request){
 
         $id     = $request->questioninfo;
-        $pid    = $request->pid;
+        $qid    = $request->qid;
         $result = Questioninfo::find($id)->update(array(
             "question"    => $request->question,
             "type"        => $request->type,
@@ -86,7 +86,7 @@ class QuestioninfoController extends Controller
         ));
 
         if($result){
-            return redirect("/admin/questionnaire/".$pid."/questioninfo");
+            return redirect("/admin/questionnaire/".$qid."/questioninfo");
         }else{
             return array("status" => false, "message" => "Update failed!");
         }
