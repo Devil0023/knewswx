@@ -81,8 +81,17 @@ class QuestioninfoController extends Controller
     }
 
     public function destroy(Request $request){
-        $id = $request->questioninfo;
-        echo "destroy:".$id;
+        $id    = $request->questioninfo;
+        $qinfo = Questioninfo::find($id);
+
+        $result["status"]      = false;
+        $result["message"]     = "Delete failed!";
+        if($qinfo->delete()){
+            $result["status"]  = true;
+            $result["message"] = "Delete succeeded !";
+        }
+
+        return json_encode($result);
     }
 
     /**
