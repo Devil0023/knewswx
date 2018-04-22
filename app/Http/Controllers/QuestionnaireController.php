@@ -23,7 +23,7 @@ class QuestionnaireController extends Controller
 
             $questions = Questioninfo::where("qid", $questionnaire->id)
                 ->where("deleted_at", null)
-                ->orderBy("qorder", "asc")->toArray();
+                ->orderBy("qorder", "asc")->get()->toArray();
 
             var_dump($questions);
         }
