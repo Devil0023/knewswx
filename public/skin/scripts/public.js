@@ -21,7 +21,7 @@ $(document).ready(function() {
 				if(error_code===0){
 					alert("兑换成功")
 					totalpointsDiv.html(res.points)
-					alert("v1left"+res.left)
+					//alert("v1left"+res.left)
 					if(res.left===0){
 						_.parent(".prizeState").addClass("soldout")
 					}
@@ -34,7 +34,8 @@ $(document).ready(function() {
 					$(this).unbind("click")
 					$(".changeProfileWrapper").removeClass("hide");
 				}else{
-					alert(res.error_message)
+					//alert(res.error_message)
+					alert("兑换失败")
 				}
 			},function(e){
 				//alert(JSON.stringify(e))
