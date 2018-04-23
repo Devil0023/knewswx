@@ -20,11 +20,11 @@ class QuestionnaireController extends Controller
             header("HTTP/1.1 404 Not Found"); die;
         }
 
-        $do     = "0";
+        $do     = "1";
         $cookie = $request->cookie("KnewsQuestionnaire-".$questionnaire->id);
 
         if(is_null($cookie)){
-            $do = "1";
+            $do = "0";
         }
 
         $questions = $this->getQuestions($questionnaire->id);
