@@ -61,7 +61,7 @@ class QuestionnaireController extends Controller
             $result["error_code"]    = "0";
             $result["error_message"] = "success";
 
-            Cookie::queue('KnewsQuestionnaire-'.$questionnaire->id, md5(time()), 1);
+            Cookie::queue('KnewsQuestionnaire-'.$questionnaire->id, md5(time()), 10);
         }else{
             $result["error_code"]    = "400002";
             $result["error_message"] = "保存失败！";
