@@ -139,8 +139,9 @@
 					},
 
 					success: function(data) {
-					    console(data);
-						if(data.error_code != "0"){
+                        var dataObj = JSON.parse(data);
+
+						if(dataObj.error_code != "0"){
 							//$(".mask").show();
 			    			$(".mask").find("p").html("你输入的工号有误！");
 						}else{
