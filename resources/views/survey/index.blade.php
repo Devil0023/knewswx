@@ -141,7 +141,6 @@
 					success: function(data) {
 
 					    console.log(data);
-
                         //var dataObj = JSON.parse(data);
 
 						if(data.error_code != "0"){
@@ -154,8 +153,7 @@
 
 					}
 				});
-				$(".first").hide();
-	    		$(".second").show();
+
 	    	}
 	    });
         /*--关闭弹层--*/
