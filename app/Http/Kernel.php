@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'wechat.oauth' => \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class,
         'knews.register' => \App\Http\Middleware\KnewsRegister::class,
+        'knews.questionnaire' => \App\Http\Middleware\KnewsQuestionnaire::class,
     ];
 }
