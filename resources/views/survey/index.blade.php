@@ -118,7 +118,12 @@
         });
         /*--进入--*/
         $("#enter").on("click",function(){
-	    	if($(".code").val()==""){
+
+            if( {!! $do !!} == 1 ){
+                $(".mask").show();
+                $(".mask").find("p").html("您已提交过问卷！");
+
+            }else if($(".code").val()==""){
 	    		$(".mask").show();
 	    		$(".mask").find("p").html("请输入您的工号！");
 	    		return false;
@@ -249,10 +254,20 @@
                 error: function(request) {
                     $(".mask").show();
                     $(".mask").find("p").html("提交失败！");
+                    $(".btn").remove();
                 },
                 success: function(data) {
-                    $(".mask").show();
-                    $(".mask").find("p").html(data.error_message);
+
+                    if(data.error_code != "0"){
+                        $(".mask").show();
+                        $(".mask").find("p").html(data.error_message);
+                    }else{
+                        $(".mask").show();
+                        $(".mask").find("p").html("提交成功");
+                    }
+
+                    $(".btn").remove();
+
                     bt = 0;
                     sm = 0;
                     console.log(data);
