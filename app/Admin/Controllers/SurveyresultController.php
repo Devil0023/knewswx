@@ -93,6 +93,19 @@ class SurveyresultController extends Controller
 
             $form->display('id', 'ID');
 
+            $form->display("questionaire", "问卷信息")->with(function ($json){
+
+                $data   = json_decode($json);
+                $survey = "";
+
+                foreach($data as $key => $val){
+                    $survey .= $key."<br/>".$val."<br/><br/>";
+                }
+
+                return $survey;
+
+            });
+
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });
