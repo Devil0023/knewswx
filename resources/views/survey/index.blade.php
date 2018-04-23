@@ -129,10 +129,15 @@
 					url:   "/survey/questionnaire/check",
 					data:$("#jobN").serialize(),
 					async: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+
 					error: function(request) {
 						$(".mask").show();
 			    		$(".mask").find("p").html("系统有误，请稍候再试！");
 					},
+
 					success: function(data) {
 					    console(data);
 						if(data.error_code != "0"){
