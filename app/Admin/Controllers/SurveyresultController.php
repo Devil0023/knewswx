@@ -37,8 +37,11 @@ class SurveyresultController extends Controller
      * @param $id
      * @return Content
      */
-    public function edit($id)
+    //public function edit($id)
+    public function edit(Request $request)
     {
+        $id = $request->surveyresult;
+
         return Admin::content(function (Content $content) use ($id) {
 
             $content->header('调查结果');
