@@ -126,7 +126,7 @@
 	    		$.ajax({
 					cache: true,
 					type: "POST",
-					url:"****.php",
+					url:"/survey/questionnaire/{{$questionnaire->id}}/check",
 					data:$("#jobN").serialize(),
 					async: false,
 					error: function(request) {
@@ -134,14 +134,14 @@
 			    		$(".mask").find("p").html("系统有误，请稍候再试！");
 					},
 					success: function(data) {
-						/*if(data==1){
+						if(data.error_code != "0"){
 							$(".mask").show();
 			    			$(".mask").find("p").html("你输入的工号有误！");
 						};
-						if(data==2){
-							$(".first").hide();
-	    					$(".second").show();
-						}*/
+//						if(data==2){
+//							$(".first").hide();
+//	    					$(".second").show();
+//						}
 					}
 				});
 				$(".first").hide();
