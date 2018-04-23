@@ -39,7 +39,7 @@ class QuestionnaireController extends Controller
 
         foreach($questions as $val){
             $var_name = "Question_".$val["qorder"];
-            $survey[$val["question"]] = @$request->$var_name;
+            $survey[$val["question"]] = is_null(@$request->$var_name)? "": @$request->$var_name;
         }
 
         return $survey;
