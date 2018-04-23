@@ -14,10 +14,15 @@ class QuestionnaireController extends Controller
 {
     public function index(Request $request)
     {
+
         $questionnaire = Questionnaire::find($request->id);
         if(!@$questionnaire->id){
             header("HTTP/1.1 404 Not Found"); die;
         }
+
+        $cookie = $request->cookie("KnewsQuestionnaire-".$questionnaire->id);
+        
+        var_dump($cookie);
 
         $questions = $this->getQuestions($questionnaire->id);
 
