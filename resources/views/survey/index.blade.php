@@ -139,6 +139,9 @@
 					},
 
 					success: function(data) {
+
+					    console.log(data);
+
                         var dataObj = JSON.parse(data);
 
 						if(dataObj.error_code != "0"){
