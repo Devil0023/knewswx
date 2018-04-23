@@ -35,24 +35,14 @@ class QuestionnaireController extends Controller
 
         $questions = $this->getQuestions($questionnaire->id);
 
-        $count     = count($questions);
-
         $survey    = array();
 
-        var_dump($questions);
-
-        for($i = 1; $i <= $count; $i++){
-            $var_name = "Question_".$i;
-            //$survey[$questions[$i]["question"]] = $request->$var_name;
-
-            var_dump($request->$var_name);
-
-            var_dump($questions[$i]["question"]);
-
-            echo "---------------";
+        foreach($questions as $val){
+            $var_name = "Question_".$val["qorder"];
+            $survey[$val["question"]] = @$request->$var_name;
         }
 
-        //return $survey;
+        return $survey;
     }
 
     public function check(Request $request){
