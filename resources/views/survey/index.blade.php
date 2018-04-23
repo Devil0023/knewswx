@@ -164,10 +164,16 @@
         $(".radio").each(function(){
             $(this).find("span").each(function(){
                 $(this).on("click",function(){
-                    $(this).parent("li").siblings("li").removeClass("curr");
-                    $(this).parent("li").addClass("curr");
-                    $(this).parents("ul.radio").next("input").val($(this).parent("li").attr("data-val"));
-                })
+		   			if(!$(this).parent("li").hasClass("curr")){
+		   				$(this).parent("li").siblings("li").removeClass("curr");
+			   			$(this).parent("li").addClass("curr");
+			   			$(this).parents("ul.radio").next("input").val($(this).parent("li").attr("data-val"));
+		   			}else{
+		   				$(this).parent("li").removeClass("curr");
+		   				$(this).parents("ul.radio").next("input").val("");
+		   			}
+		   			
+		   		})
             });
         });
         /*-----复选-----*/
@@ -176,7 +182,6 @@
 		   	var num = 0;
 		   	$(this).find("span").each(function(index){
 		   		$(this).on("click",function(){
-		   			console.log(index);
 		   			if(!$(this).parent("li").hasClass("curr")){
 		   				num +=1;
 			  			$(this).parent("li").addClass("curr")
