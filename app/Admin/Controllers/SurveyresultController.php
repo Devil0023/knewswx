@@ -99,7 +99,14 @@ class SurveyresultController extends Controller
                 $survey = "";
 
                 foreach($data as $key => $val){
-                    $survey .= $key."<br/>".$val."<br/><br/>";
+                    $survey .= $key."<br/>";
+
+                    if(is_array($val)){
+                        $survey .= implode("、", $val)."<br/><br/>";
+                    }else{
+                        $survey .= $val."<br/><br/>";
+                    }
+                    
                 }
 
                 return $survey;
