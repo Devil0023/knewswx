@@ -23,6 +23,11 @@ class QuestionnaireController extends Controller
     }
 
     public function submit(Request $request){
+
+        $code = @session('knewsquestionnaire.code');
+
+        var_dump($code);
+
         $questionnaire = Questionnaire::find($request->id);
         if(!@$questionnaire->id){
             header("HTTP/1.1 404 Not Found"); die;
@@ -36,6 +41,28 @@ class QuestionnaireController extends Controller
             $var_name = "Question_".$i;
             var_dump($request->$var_name);
         }
+    }
+
+    public function check(Request $request){
+
+        $result["error_code"]    = "0";
+        $result["error_message"] = "success";
+
+        $code = @$request->code;
+        if(empty($code) || $this->checkCode($code) === false){
+            $result["error_code"]    = "400001";
+            $result["error_message"] = "工号不存在";
+        }else{
+            session(['knewsquestionnaire.code' => $code]);
+        }
+
+        return $request;
+    }
+
+    private function checkCode($code){
+
+        return true;
+
     }
 
     private function getQuestions($qid){

@@ -20,6 +20,7 @@ Route::group(["prefix" => "survey", 'middleware' => ['web', "knews.questionnaire
 
     Route::get("/questionnaire/{id}", "QuestionnaireController@index");
     Route::post("/questionnaire/{id}/submit", "QuestionnaireController@submit");
+    Route::post("/questionnaire/check", "QuestionnaireController@check");
 
 });
 
