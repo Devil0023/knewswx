@@ -142,9 +142,9 @@
 
 					    console.log(data);
 
-                        var dataObj = JSON.parse(data);
+                        //var dataObj = JSON.parse(data);
 
-						if(dataObj.error_code != "0"){
+						if(data.error_code != "0"){
 							$(".mask").show();
 			    			$(".mask").find("p").html(dataObj.error_message);
 						}else{
