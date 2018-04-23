@@ -49,6 +49,7 @@ class QuestionnaireController extends Controller
         $result["error_message"] = "success";
 
         $code = @$request->jobNumber;
+        var_dump($code); die;
 
         if(empty($code) || $this->checkCode($code) === false){
             $result["error_code"]    = "400001";
