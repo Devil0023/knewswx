@@ -134,6 +134,8 @@
 			    		$(".mask").find("p").html("系统有误，请稍候再试！");
 					},
 					success: function(data) {
+					    console(data);
+					    
 						if(data.error_code != "0"){
 							//$(".mask").show();
 			    			$(".mask").find("p").html("你输入的工号有误！");
