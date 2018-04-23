@@ -90,6 +90,7 @@ class QuestionnaireController extends Controller
                 // append一个操作
                 $actions->append('<a href="'.url("admin/questionnaire/".$actions->getKey()."/questioninfo").'"><i class="fa fa-eye"></i></a>');
 
+                $actions->append('<a href="'.url("admin/questionnaire/".$actions->getKey()."/surveyresult").'"><i class="fa fa-paper-plane"></i></a>');
             });
         });
     }

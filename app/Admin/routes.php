@@ -29,4 +29,6 @@ Route::group([
 
     $router->resource("/questionnaire/{qid}/questioninfo", QuestioninfoController::class);
 
+    $router->resource("/questionnaire/{qid}/surveyresult", SurveyresultController::class);
+
 });

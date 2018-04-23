@@ -24,8 +24,8 @@ class SurveyresultController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('调查结果');
+            $content->description('列表');
 
             $content->body($this->grid());
         });
@@ -41,8 +41,8 @@ class SurveyresultController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('调查结果');
+            $content->description('列表');
 
             $content->body($this->form()->edit($id));
         });
@@ -57,8 +57,8 @@ class SurveyresultController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('调查结果');
+            $content->description('列表');
 
             $content->body($this->form());
         });
@@ -77,6 +77,8 @@ class SurveyresultController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->disableCreateButton();
         });
     }
 
