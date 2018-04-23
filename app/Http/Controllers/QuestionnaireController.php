@@ -57,7 +57,7 @@ class QuestionnaireController extends Controller
             session(['knewsquestionnaire.code' => $code]);
         }
 
-        return $request;
+        return $result;
     }
 
     private function checkCode($code){
