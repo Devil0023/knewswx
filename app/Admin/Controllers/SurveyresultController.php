@@ -106,7 +106,7 @@ class SurveyresultController extends Controller
                     }else{
                         $survey .= $val."<br/><br/>";
                     }
-                    
+
                 }
 
                 return $survey;
@@ -115,6 +115,10 @@ class SurveyresultController extends Controller
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
+
+            $form->disableSubmit();
+            $form->disableReset();
+
         });
     }
 }
