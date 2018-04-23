@@ -126,7 +126,7 @@
 	    		$.ajax({
 					cache: true,
 					type: "POST",
-					url:"/survey/questionnaire/{{$questionnaire->id}}/check",
+					url:"/survey/questionnaire/check",
 					data:$("#jobN").serialize(),
 					async: false,
 					error: function(request) {
