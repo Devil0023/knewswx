@@ -61,8 +61,9 @@ class QuestionnaireController extends Controller
 
     private function checkCode($code){
 
-        return true;
+        $list = array("01990120");
 
+        return in_array($list, $code);
     }
 
     private function getQuestions($qid){
