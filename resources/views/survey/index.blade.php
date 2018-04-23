@@ -145,15 +145,13 @@
                         var dataObj = JSON.parse(data);
 
 						if(dataObj.error_code != "0"){
-							//$(".mask").show();
-			    			$(".mask").find("p").html("你输入的工号有误！");
+							$(".mask").show();
+			    			$(".mask").find("p").html(dataObj.error_message);
 						}else{
-                            $(".mask").show();
+                            $(".first").hide();
+                            $(".second").show();
                         };
-//						if(data==2){
-//							$(".first").hide();
-//	    					$(".second").show();
-//						}
+
 					}
 				});
 				$(".first").hide();
