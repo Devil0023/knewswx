@@ -52,6 +52,20 @@ class SurveyresultController extends Controller
         });
     }
 
+    public function destroy(Request $request){
+        $id    = $request->surveyresult;
+        $qinfo = Surveyresult::find($id);
+
+        $result["status"]      = false;
+        $result["message"]     = "Delete failed !";
+        if($qinfo->delete()){
+            $result["status"]  = true;
+            $result["message"] = "Delete succeeded !";
+        }
+
+        return $result;
+    }
+
     /**
      * Create interface.
      *
