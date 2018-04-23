@@ -48,7 +48,8 @@ class QuestionnaireController extends Controller
         $result["error_code"]    = "0";
         $result["error_message"] = "success";
 
-        $code = @$request->code;
+        $code = @$request->jobNumber;
+
         if(empty($code) || $this->checkCode($code) === false){
             $result["error_code"]    = "400001";
             $result["error_message"] = "工号不存在";

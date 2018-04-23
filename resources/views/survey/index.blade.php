@@ -126,7 +126,7 @@
 	    		$.ajax({
 					cache: true,
 					type: "POST",
-					url:"/survey/questionnaire/check",
+					url:   "/survey/questionnaire/check",
 					data:$("#jobN").serialize(),
 					async: false,
 					error: function(request) {
@@ -135,9 +135,11 @@
 					},
 					success: function(data) {
 						if(data.error_code != "0"){
-							$(".mask").show();
+							//$(".mask").show();
 			    			$(".mask").find("p").html("你输入的工号有误！");
-						};
+						}else{
+                            $(".mask").show();
+                        };
 //						if(data==2){
 //							$(".first").hide();
 //	    					$(".second").show();
