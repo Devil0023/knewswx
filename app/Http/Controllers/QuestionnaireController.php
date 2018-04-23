@@ -8,6 +8,7 @@ use App\Models\Surveyresult;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cookie;
 
 class QuestionnaireController extends Controller
 {
@@ -51,6 +52,8 @@ class QuestionnaireController extends Controller
         if($surveyresult){
             $result["error_code"]    = "0";
             $result["error_message"] = "success";
+
+            Cookie::queue('KnewsQuestionnaire-'.$questionnaire->id, md5(time()), 10);
         }else{
             $result["error_code"]    = "400002";
             $result["error_message"] = "保存失败！";
