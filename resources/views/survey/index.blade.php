@@ -16,10 +16,12 @@
 </div>
 <div class="first">
     <div class="fBox">
-        <img src="/img/survey/gh.png" />
-        <input type="number" class="code" value="" />
-        <img src="/img/survey/tip.png" />
-        <input type="button" class="sBtn" value="进 入" id="enter" />
+    	<form id="jobN">
+	        <img src="/img/survey/gh.png" />
+	        <input type="number" class="code" name="jobNumber" value="" />
+	        <img src="/img/survey/tip.png" />
+	        <input type="button" class="sBtn" value="进 入" id="enter" />
+        </form>
     </div>
 </div>
 <div class="second">
@@ -41,7 +43,7 @@
                 }
 
                 $area .= "</ul>".
-                         "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required/>";
+                         "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\"/>";
 
                 break;
 
@@ -52,8 +54,8 @@
 
                 foreach($options as $option){
                     if($option === "else"){
-                        $area .= "<li><span></span>其他（请说明）<input class=\"smTxt\" name=\"Question_".$question["qorder"]."[]\" type=\"text\" value=\"\" />".
-                                 "<input class=\"votebox\" value=\"else\" name=\"Question_".$question["qorder"]."[]\" style=\"display:none\" type=\"checkbox\"></li>";
+                        $area .= "<li><span></span>其他（请说明）<input class=\"smTxt\" name=\"Question_".$question["qorder"]."[]\" type=\"text\" value=\"\" disabled=\"disabled\" />".
+                                 "<input class=\"votebox\" value=\"else\" name=\"\" style=\"display:none\" type=\"checkbox\"></li>";
                     }else{
                         $area .= "<li><span></span>".$option."<input class=\"votebox\" value=\"".$option.
                                  "\" name=\"Question_".$question["qorder"]."[]\" style=\"display:none\" type=\"checkbox\"></li>";
@@ -61,12 +63,14 @@
 
                 }
 
-                $area .= "</ul>";
+                $area .= "</ul>".(intval($question["isrequired"]) === 1? "<input type=\"hidden\" value=\"\" class=\"bitian\" />": "");
+                
+               
 
                 break;
             case 2:
                 $type = "开放题";
-                $area = "<textarea name=\"Question_".$question["qorder"]."\"></textarea>";
+                $area = "<textarea class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\" name=\"Question_".$question["qorder"]."\"></textarea>";
 
                 break;
         }
@@ -114,14 +118,36 @@
         });
         /*--进入--*/
         $("#enter").on("click",function(){
-            if($(".code").val()==""){
-                $(".mask").show();
-                $(".mask").find("p").html("您输入的工号有误！");
-            }else{
-                $(".first").hide();
-                $(".second").show();
-            }
-        });
+	    	if($(".code").val()==""){
+	    		$(".mask").show();
+	    		$(".mask").find("p").html("请输入您的工号！");
+	    		return false;
+	    	}else{
+	    		$.ajax({
+					cache: true,
+					type: "POST",
+					url:"****.php",
+					data:$("#jobN").serialize(),
+					async: false,
+					error: function(request) {
+						$(".mask").show();
+			    		$(".mask").find("p").html("系统有误，请稍候再试！");
+					},
+					success: function(data) {
+						/*if(data==1){
+							$(".mask").show();
+			    			$(".mask").find("p").html("你输入的工号有误！");
+						};
+						if(data==2){
+							$(".first").hide();
+	    					$(".second").show();
+						}*/
+					}
+				});
+				$(".first").hide();
+	    		$(".second").show();
+	    	}
+	    });
         /*--关闭弹层--*/
         $("#close").on("click",function(){
             $(this).parents(".mask").hide();
@@ -137,24 +163,67 @@
             });
         });
         /*-----复选-----*/
-        var chkbs = $('.votebox');
-        $(".check span").each(function(index){
-            $(this).on("click",function(){
-                if(!$(this).parent("li").hasClass("curr")){
-                    $(this).parent("li").addClass("curr")
-                    chkbs[index].checked = true;
-                }else{
-                    $(this).parent("li").removeClass("curr")
-                    chkbs[index].checked= false;
-                }
-
-            });
-        });
+        $(".check").each(function(){
+		   	var chkbs = $(this).find('.votebox');
+		   	var num = 0;
+		   	$(this).find("span").each(function(index){
+		   		$(this).on("click",function(){
+		   			console.log(index);
+		   			if(!$(this).parent("li").hasClass("curr")){
+		   				num +=1;
+			  			$(this).parent("li").addClass("curr")
+			  			chkbs[index].checked = true;
+			  			if($(this).parent("li").find("input.smTxt")){
+			  				$(this).parent("li").find("input.smTxt").removeAttr("disabled");
+			  			}
+			  			$(this).parents("ul.check").next("input").val("ok");
+			  		}else{
+			  			num -=1;
+			  			$(this).parent("li").removeClass("curr");
+			  			chkbs[index].checked = false;
+			  			if($(this).parent("li").find("input.smTxt")){
+			  				$(this).parent("li").find("input.smTxt").val("").attr("disabled","disabled");
+			  			};
+			  			if(num==0){
+			  				$(this).parents("ul.check").next("input").val("");
+			  			}
+			  		}
+		   		})
+		   	});
+		 });
 
         /*----表单提交----*/
+        var bt=0,sm=0;
         $("#submit").on("click",function(){
-            $.ajax({
-                cache: true,
+		 	var smTxt = $("input.smTxt");
+		 	var bitian = $(".bitian");
+		 	
+		 	$(".bitian").each(function(index){
+		 		if($(".bitian")[index].value==""){
+		 			bt = 0;
+		 			$(".mask").show();
+			    	$(".mask").find("p").html("您有必填项未填！");
+			    	return false;
+		 		}
+		 		bt = 1;
+		 	});
+		 	$("input.smTxt").each(function(index){
+		 		if(!smTxt[index].disabled && smTxt[index].value==""){
+		 			sm = 0;
+		 			$(".mask").show();
+			    	$(".mask").find("p").html("你有说明未填！");
+			    	return false;
+		 		}
+		 		sm = 1;
+		 	});
+		 	if(bt==1&&sm==1){
+		 		sbData();
+		 	}
+		 })
+        	
+    	function sbData(){
+			$.ajax({
+				cache: true,
                 type: "POST",
                 url:"/survey/questionnaire/{{$questionnaire->id}}/submit",
 
@@ -171,11 +240,13 @@
                 success: function(data) {
                     $(".mask").show();
                     $(".mask").find("p").html("提交成功！");
+                    bt = 0;
+                    sm = 0;
                     console.log(data);
                 }
             });
-        })
-
+		}
+           
     });
     function callback(data, success, dataAndEvents) {
         var script = document.createElement("script");
