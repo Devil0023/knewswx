@@ -37,10 +37,14 @@ class QuestionnaireController extends Controller
 
         $count     = count($questions);
 
+        $survey    = array();
+
         for($i = 1; $i <= $count; $i++){
             $var_name = "Question_".$i;
-            var_dump($questions[$i]["question"]."----".$request->$var_name);
+            $survey[$questions[$i]["question"]] = $request->$var_name;
         }
+
+        return $survey;
     }
 
     public function check(Request $request){
