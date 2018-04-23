@@ -247,7 +247,7 @@
                 },
                 success: function(data) {
                     $(".mask").show();
-                    $(".mask").find("p").html("提交成功！");
+                    $(".mask").find("p").html(data.error_message);
                     bt = 0;
                     sm = 0;
                     console.log(data);

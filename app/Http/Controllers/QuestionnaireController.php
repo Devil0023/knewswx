@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Questioninfo;
 use App\Models\Questionnaire;
+use App\Models\Surveyresult;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -26,8 +28,6 @@ class QuestionnaireController extends Controller
 
         $code = @session('knewsquestionnaire.code');
 
-        var_dump($code);
-
         $questionnaire = Questionnaire::find($request->id);
         if(!@$questionnaire->id){
             header("HTTP/1.1 404 Not Found"); die;
@@ -39,10 +39,24 @@ class QuestionnaireController extends Controller
 
         foreach($questions as $val){
             $var_name = "Question_".$val["qorder"];
-            $survey[$val["question"]] = is_null(@$request->$var_name)? "": @$request->$var_name;
+            $survey[$val["qorder"].".".$val["question"]] = is_null(@$request->$var_name)? "": @$request->$var_name;
         }
 
-        return $survey;
+        $surveyresult = Surveyresult::create(array(
+            "code" => $code,
+            "qid"  => $questionnaire->id,
+            "questionaire" => json_encode($survey),
+        ));
+
+        if($surveyresult){
+            $result["error_code"]    = "0";
+            $result["error_message"] = "success";
+        }else{
+            $result["error_code"]    = "400002";
+            $result["error_message"] = "保存失败！";
+        }
+
+        return $result;
     }
 
     public function check(Request $request){
@@ -54,7 +68,7 @@ class QuestionnaireController extends Controller
 
         if(empty($code) || $this->checkCode($code) === false){
             $result["error_code"]    = "400001";
-            $result["error_message"] = "工号不存在";
+            $result["error_message"] = "工号不存在！";
         }else{
             session(['knewsquestionnaire.code' => $code]);
         }
