@@ -146,7 +146,7 @@
 
 						if(data.error_code != "0"){
 							$(".mask").show();
-			    			$(".mask").find("p").html(dataObj.error_message);
+			    			$(".mask").find("p").html(data.error_message);
 						}else{
                             $(".first").hide();
                             $(".second").show();
