@@ -144,7 +144,10 @@
         /*--进入--*/
         $("#enter").on("click",function(){
 
-            if("{!! $do !!}" === "1"){
+            if("{!! $do !!}" == "1"){
+
+                console.log("111111");
+
                 $(".mask").show();
                 $(".mask").find("p").html("您已提交过问卷！");
 
