@@ -14,7 +14,7 @@ class SurveyresultExport extends AbstractExporter{
         $data     = $this->getData();
 
         foreach($data as $key => $row){
-            $info = json_decode($row, true);
+            $info = json_decode($row["questionaire"], true);
 
             if($key === 0){
                 $questions = $this->dealArrStr(array_keys($info));
@@ -39,7 +39,15 @@ class SurveyresultExport extends AbstractExporter{
     }
 
     private function dealArrStr($array){
-        foreach($array as $key => $string){
+        foreach($array as $key => $info){
+            $string      = "";
+
+            if(is_array($info)){
+                $string .= implode("、", $info);
+            }else{
+                $string .= $info;
+            }
+
             $array[$key] = '"'.str_replace('"', '""', str_replace(',', '","', $string)).'"';
         }
 
