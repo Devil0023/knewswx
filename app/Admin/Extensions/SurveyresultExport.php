@@ -8,25 +8,22 @@ class SurveyresultExport extends AbstractExporter{
     public function export(){
 
         $filename = $this->getTable().'.csv';
-        $titles   = array();
+        $output   = "";
 
         // 这里获取数据
         $data     = $this->getData();
 
-        if (!empty($data)) {
-            $columns = array_dot($this->sanitize($data[0]));
-            $titles  = array_keys($columns);
+        foreach($data as $key => $row){
+            $info = json_decode($row, true);
+
+            if($key === 0){
+                $questions = $this->dealArrStr(array_keys($info));
+                $output   .= "Created_at,".implode(",", $questions).PHP_EOL;
+            }
+
+            $output .= $row["created_at"].",".implode(",", $this->dealArrStr($info)).PHP_EOL;
         }
 
-        var_dump($titles);
-
-        foreach($data as $row){
-            var_dump($row);  die;
-        }
-
-
-        // 根据上面的数据拼接出导出数据，
-        $output = '';
 
         $headers = [
             'Content-Encoding'    => 'UTF-8',
@@ -41,6 +38,13 @@ class SurveyresultExport extends AbstractExporter{
 
     }
 
+    private function dealArrStr($array){
+        foreach($array as $key => $string){
+            $array[$key] = '"'.str_replace('"', '""', str_replace(',', '","', $string)).'"';
+        }
+
+        return $array;
+    }
 
     /**
      * Remove indexed array.
