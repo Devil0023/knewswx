@@ -24,6 +24,7 @@ class SurveyresultExport extends AbstractExporter{
             $output .= $row["created_at"].",".implode(",", $this->dealArrStr($info)).PHP_EOL;
         }
 
+        $output  = mb_convert_encoding($output, "gb2312", "utf-8");
 
         $headers = [
             'Content-Encoding'    => 'UTF-8',
