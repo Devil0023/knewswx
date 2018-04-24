@@ -79,6 +79,12 @@
                 $area = "<textarea class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\" name=\"Question_".$question["qorder"]."\"></textarea>";
 
                 break;
+
+            case 3:
+                $type = "单选(下拉框)";
+                $area = "";
+
+                break;
         }
 
     ?>
