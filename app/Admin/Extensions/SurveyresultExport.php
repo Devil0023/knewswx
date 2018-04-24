@@ -41,6 +41,40 @@ class SurveyresultExport extends AbstractExporter{
 
     }
 
+
+    /**
+     * Remove indexed array.
+     *
+     * @param array $row
+     *
+     * @return array
+     */
+    protected function sanitize(array $row)
+    {
+        return collect($row)->reject(function ($val) {
+            return is_array($val) && !Arr::isAssoc($val);
+        })->toArray();
+    }
+
+    /**
+     * @param $row
+     * @param string $fd
+     * @param string $quot
+     * @return string
+     */
+    protected static function putcsv($row, $fd = ',', $quot = '"')
+    {
+        $str = '';
+        foreach ($row as $cell) {
+            $cell = str_replace([$quot, "\n"], [$quot . $quot, ''], $cell);
+            if (strchr($cell, $fd) !== FALSE || strchr($cell, $quot) !== FALSE) {
+                $str .= $quot . $cell . $quot . $fd;
+            } else {
+                $str .= $cell . $fd;
+            }
+        }
+        return substr($str, 0, -1) . "\n";
+    }
 }
 
 ?>
