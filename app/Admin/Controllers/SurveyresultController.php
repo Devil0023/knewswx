@@ -97,6 +97,8 @@ class SurveyresultController extends Controller
             $grid->updated_at();
 
             $grid->disableCreateButton();
+
+            $grid->exporter('survey-exporter');
         });
     }
 
