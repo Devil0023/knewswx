@@ -82,7 +82,19 @@
 
             case 3:
                 $type = "单选(下拉框)";
-                $area = "";
+                $area = "<div class=\"selectBox\">".
+		            	"<p>请选择</p>".
+		            	"<ul class=\"select\">";
+
+
+                $area .= intval($question["isrequired"]) === 1? "": "<li>请选择</li>";
+
+                $options = array_filter(explode(PHP_EOL, $question["options"]));
+                foreach($options as $option){
+                    $area .= "<li>".$option."</li>";
+                }
+
+                $area .= "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\"/>";
 
                 break;
         }
@@ -230,6 +242,25 @@
 		   		})
 		   	});
 		 });
+
+        /*--下拉--*/
+        $(".selectBox").each(function(){
+            $(this).find("p").on("click",function(event){
+                $(".select").hide();
+                $(this).siblings("ul").show();
+                event.stopPropagation();
+            });
+        })
+        $(".select").each(function(){
+            $(this).find("li").on("click",function(){
+                $(this).parent("ul").prev("p").html($(this).html());
+                $(this).parent("ul").next("input").val($(this).html());
+            });
+        })
+        $(document).click(function(){
+            $(".select").hide();
+        });
+
 
         /*----表单提交----*/
         var bt=0,sm=0,rt=0;
