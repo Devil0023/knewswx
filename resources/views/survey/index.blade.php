@@ -94,7 +94,8 @@
                     $area .= "<li>".$option."</li>";
                 }
 
-                $area .= "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\"/>";
+                $area .= "</ul>".
+                         "<input type=\"hidden\" name=\"Question_".$question["qorder"]."\" value=\"\" required class=\"".(intval($question["isrequired"]) === 1? "bitian": "")."\"/>";
 
                 break;
         }
