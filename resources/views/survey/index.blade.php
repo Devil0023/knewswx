@@ -39,7 +39,13 @@
                 $area    = "<ul class=\"radio\">";
 
                 foreach($options as $option){
-                    $area .= "<li data-val=\"".$option."\"><span></span>".$option."</li>";
+                	
+                	if($option === "else"){
+                		$area .= "<li data-val=\"\"><span></span>其他（请说明）<input class=\"radioTxt\" type=\"text\" value=\"\" disabled=\"disabled\" /></li>";	
+                	}else{
+                		$area .= "<li data-val=\"".$option."\"><span></span>".$option."</li>";
+                	}
+                	
                 }
 
                 $area .= "</ul>".
@@ -167,11 +173,15 @@
         });
         /*---单选----*/
         $(".radio").each(function(){
-            $(this).find("span").each(function(){
-                $(this).on("click",function(){
+		   	$(this).find("span").each(function(){
+		   		$(this).on("click",function(){
+		   			$(this).parents("ul.radio").find("input.radioTxt").val("").attr("disabled","disabled");
 		   			if(!$(this).parent("li").hasClass("curr")){
 		   				$(this).parent("li").siblings("li").removeClass("curr");
 			   			$(this).parent("li").addClass("curr");
+			   			if($(this).parent("li").find("input.radioTxt")){
+			   				$(this).parent("li").find("input.radioTxt").removeAttr("disabled");
+			   			}
 			   			$(this).parents("ul.radio").next("input").val($(this).parent("li").attr("data-val"));
 		   			}else{
 		   				$(this).parent("li").removeClass("curr");
@@ -179,8 +189,13 @@
 		   			}
 		   			
 		   		})
-            });
-        });
+		   	});
+		   });
+		   $(".radioTxt").each(function(){
+		   		$(this).bind("input propertychange change",function(){
+		   			$(this).parents("ul.radio").next("input").val($(this).val());
+		   		});
+		   });
         /*-----复选-----*/
         $(".check").each(function(){
 		   	var chkbs = $(this).find('.votebox');
@@ -211,11 +226,11 @@
 		 });
 
         /*----表单提交----*/
-        var bt=0,sm=0;
+        var bt=0,sm=0,rt=0;
         $("#submit").on("click",function(){
 		 	var smTxt = $("input.smTxt");
 		 	var bitian = $(".bitian");
-		 	
+		 	var radioTxt = $(".radioTxt");
 		 	$(".bitian").each(function(index){
 		 		if($(".bitian")[index].value==""){
 		 			bt = 0;
@@ -234,7 +249,16 @@
 		 		}
 		 		sm = 1;
 		 	});
-		 	if(bt==1&&sm==1){
+		 	$("input.radioTxt").each(function(index){
+			 		if(!radioTxt[index].disabled && radioTxt[index].value==""){
+			 			rt = 0;
+			 			$(".mask").show();
+				    	$(".mask").find("p").html("你有说明未填！");
+				    	return false;
+			 		}
+		 			rt = 1;
+		 		});
+		 	if(bt==1&&sm==1&&rt==1){
 		 		sbData();
 		 	}
 		 })
