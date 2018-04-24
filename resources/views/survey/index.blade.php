@@ -253,8 +253,12 @@
         })
         $(".select").each(function(){
             $(this).find("li").on("click",function(){
+                if($(this).html() == "请选择"){
+                    $(this).parent("ul").next("input").val("");
+                }else{
+                    $(this).parent("ul").next("input").val($(this).html());
+                }
                 $(this).parent("ul").prev("p").html($(this).html());
-                $(this).parent("ul").next("input").val($(this).html());
             });
         })
         $(document).click(function(){
