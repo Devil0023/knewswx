@@ -18,4 +18,9 @@
  *
  */
 
+use Encore\Admin\Grid\Exporter;
+use App\Admin\Extensions\CustomExporter;
+
+
 Encore\Admin\Form::forget(['map', 'editor']);
+Exporter::extend('survey-exporter', SurveyresultExport::class);
