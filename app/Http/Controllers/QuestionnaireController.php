@@ -16,7 +16,7 @@ class QuestionnaireController extends Controller
     {
 
         $questionnaire = Questionnaire::find($request->id);
-        if(!@$questionnaire->id){
+        if(!@$questionnaire->id || @intval($questionnaire->checked) != 1){
             header("HTTP/1.1 404 Not Found"); die;
         }
 
@@ -38,7 +38,7 @@ class QuestionnaireController extends Controller
         $code = @session('knewsquestionnaire.code');
 
         $questionnaire = Questionnaire::find($request->id);
-        if(!@$questionnaire->id){
+        if(!@$questionnaire->id || @intval($questionnaire->checked) != 1){
             header("HTTP/1.1 404 Not Found"); die;
         }
 
