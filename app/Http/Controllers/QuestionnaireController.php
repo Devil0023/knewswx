@@ -90,6 +90,8 @@ class QuestionnaireController extends Controller
     private function checkCode($code){
 
         $list = array(
+            "01000492",
+
             "01001602",
             "01000233",
             "01001211",
