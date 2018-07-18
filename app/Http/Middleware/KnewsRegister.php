@@ -28,7 +28,7 @@ class KnewsRegister
             $app      = Factory::officialAccount(config("wechat.official_account.default"));
             $accessToken = $app->access_token;
             $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
-            echo $token; die;
+            print_r($token);
         }
 
         if(is_null($wxuser)){
