@@ -26,6 +26,10 @@ class KnewsRegister
 
         if($original["nickname"] === "Z.L"){
             $app      = Factory::officialAccount(config("wechat.official_account.default"));
+            $pRedis   = app('redis')->connection()->client(); // connection($name), $name 默认为 `default`
+            $cache    = new RedisCache($pRedis);
+            $app['cache'] = $cache;
+
             $accessToken = $app->access_token;
             $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
             print_r($token);
