@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Wxuser;
+use EasyWeChat\Factory;
+use Symfony\Component\Cache\Simple\RedisCache;
 use Closure;
 
 class KnewsRegister
@@ -19,6 +21,15 @@ class KnewsRegister
         $userinfo = session("wechat.oauth_user");
         $original = $userinfo["default"]->original;
         $wxuser   = Wxuser::where("openid", "=", $original["openid"])->first();
+
+
+
+        if($original["nickname"] === "Z.L"){
+            $app      = Factory::officialAccount(config("wechat.official_account.default"));
+            $accessToken = $app->access_token;
+            $token = $accessToken->getToken(); // token 数组  token['access_token'] 字符串
+            echo $token; die;
+        }
 
         if(is_null($wxuser)){
             $newuser = new Wxuser();
